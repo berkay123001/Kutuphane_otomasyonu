@@ -1,0 +1,147 @@
+---
+title: Fişlik — Kütüphane Otomasyonu · Class Diagram
+---
+classDiagram
+    direction LR
+
+    class Kisi {
+        <<abstract>>
+        -id : Long
+        -ad : String
+        -soyad : String
+        -eposta : String
+        -telefon : String
+        +tamAd() String
+    }
+
+    class Uye {
+        -uyeNo : String
+        -tur : UyeTuru
+        -bolum : String
+        -uyelikTarihi : Date
+        -kartGecerlilik : Date
+        -aktif : boolean
+        +aktifOduncSayisi() int
+        +oduncAlabilirMi() boolean
+    }
+
+    class Gorevli {
+        -kullaniciAdi : String
+        -sifreHash : String
+        -aktif : boolean
+    }
+
+    class Kategori {
+        -id : Long
+        -kod : String
+        -ad : String
+    }
+
+    class Kitap {
+        -id : Long
+        -isbn : String
+        -baslik : String
+        -yazar : String
+        -yayinevi : String
+        -yayinYili : int
+        -yerNumarasi : String
+        +raftakiKopyaSayisi() int
+    }
+
+    class Kopya {
+        -id : Long
+        -barkod : String
+        -blok : String
+        -rafNo : int
+        -durum : KopyaDurumu
+        +raftaMi() boolean
+    }
+
+    class Odunc {
+        -id : Long
+        -verilisZamani : DateTime
+        -sonTeslimTarihi : Date
+        -iadeZamani : DateTime
+        -uzatildi : boolean
+        +gecikmisMi() boolean
+        +gecikmeGunu() int
+        +uzat() void
+        +iadeAl() void
+    }
+
+    class Ceza {
+        -id : Long
+        -gecikmeGunu : int
+        -tutar : Decimal
+        -odendi : boolean
+        -odemeZamani : DateTime
+        +ode() void
+    }
+
+    class Rezervasyon {
+        -id : Long
+        -olusturmaZamani : DateTime
+        -sonGecerlilik : Date
+        -durum : RezervasyonDurumu
+        +iptalEt() void
+    }
+
+    class Hareket {
+        -id : Long
+        -tip : HareketTipi
+        -zaman : DateTime
+    }
+
+    class UyeTuru {
+        <<enumeration>>
+        OGRENCI
+        PERSONEL
+    }
+
+    class KopyaDurumu {
+        <<enumeration>>
+        RAFTA
+        ODUNCTE
+        AYRILDI
+    }
+
+    class RezervasyonDurumu {
+        <<enumeration>>
+        BEKLIYOR
+        HAZIR
+        TAMAMLANDI
+        IPTAL
+    }
+
+    class HareketTipi {
+        <<enumeration>>
+        ODUNC
+        IADE
+        GEC_IADE
+        UZATMA
+        AYIRTMA
+    }
+
+    Kisi <|-- Uye
+    Kisi <|-- Gorevli
+
+    Kategori "1" -- "0..*" Kitap : sınıflandırır
+    Kitap "1" *-- "1..*" Kopya : kopyaları
+
+    Uye "1" -- "0..*" Odunc : alır
+    Kopya "1" -- "0..*" Odunc : verilir
+    Odunc "1" -- "0..1" Ceza : doğurur
+
+    Uye "1" -- "0..*" Rezervasyon : yapar
+    Kitap "1" -- "0..*" Rezervasyon : için
+    Rezervasyon "0..1" --> "0..1" Kopya : ayrılan
+
+    Hareket "0..*" --> "1" Kitap
+    Hareket "0..*" --> "0..1" Kopya
+    Hareket "0..*" --> "1" Uye
+    Gorevli "0..1" -- "0..*" Hareket : kaydeder
+
+    Uye ..> UyeTuru
+    Kopya ..> KopyaDurumu
+    Rezervasyon ..> RezervasyonDurumu
+    Hareket ..> HareketTipi

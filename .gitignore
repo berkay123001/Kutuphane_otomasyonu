@@ -1,0 +1,6 @@
+# Blender otomatik yedekleri
+*.blend1
+
+# Editör / sistem
+.DS_Store
+*.swp
