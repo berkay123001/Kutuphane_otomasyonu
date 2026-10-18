@@ -1,0 +1,184 @@
+/* 03 · Kitap seçici — başlık, çizgili kâğıt arama kutusu ve küçük katalog fişleri
+   (fislik/Katalog.dc.html .sbox / .fc ile aynı dil). */
+
+.bas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 18px;
+}
+.baslik {
+  font-size: clamp(56px, 7.4vw, 118px);
+}
+.satir {
+  display: block;
+  overflow: hidden;
+  /* Büyük harf İ/Ü/Ş noktaları maskede kırpılmasın; boşluk negatif marjla dengelenir */
+  padding: 0.18em 0 0.05em;
+  margin-top: -0.18em;
+}
+.satir > span {
+  display: block;
+  animation: global(lnUp) 0.9s var(--cizgi) 0.1s both;
+}
+
+/* ---------- arama ---------- */
+.arama {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.kutu {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 76px;
+  padding: 0 22px;
+  border-radius: 4px;
+  background-color: var(--paper);
+  color: var(--kagit-yazi);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s var(--yay), box-shadow 0.3s, background-color var(--tema-gecis);
+  animation: kutuGir 0.8s cubic-bezier(0.2, 0.9, 0.3, 1.1) 0.2s both;
+}
+@keyframes kutuGir {
+  from {
+    opacity: 0;
+    translate: 0 -24px;
+    rotate: -1deg;
+  }
+}
+.kutu::before {
+  content: '';
+  position: absolute;
+  left: 62px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #d9584a;
+}
+.kutu::after {
+  content: '';
+  position: absolute;
+  left: 84px;
+  right: 22px;
+  bottom: 18px;
+  height: 1px;
+  background: rgba(64, 104, 148, 0.4);
+}
+.kutu:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 50px rgba(0, 0, 0, 0.55), 0 0 0 2px var(--odak);
+}
+.kutu input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 76px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--kagit-yazi);
+  caret-color: var(--mor);
+  font-family: var(--f-daktilo);
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 700;
+}
+.kutu input::placeholder {
+  color: #6b6553;
+  font-weight: 400;
+}
+
+/* ---------- sonuç fişleri ---------- */
+.sonuclar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: opacity 0.3s;
+}
+.sonuclar[data-eski='true'] {
+  opacity: 0.6;
+}
+.fis {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 182px;
+  padding: 10px 22px 40px;
+  border-radius: 4px;
+  color: var(--kagit-yazi);
+  text-decoration: none;
+  background-color: var(--paper);
+  background-image: linear-gradient(#d9584a, #d9584a),
+    repeating-linear-gradient(to bottom, transparent 0 23px, rgba(64, 104, 148, 0.24) 23px 24px);
+  background-size: 100% 2px, 100% calc(100% - 64px);
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 36px, 0 64px;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: transform 0.5s cubic-bezier(0.2, 1.4, 0.35, 1), box-shadow 0.3s, background-color var(--tema-gecis);
+}
+.fis:hover,
+.fis:focus-visible {
+  color: var(--kagit-yazi);
+  transform: translateY(-8px) rotate(-0.6deg);
+  box-shadow: 0 28px 44px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+.fisUst {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  height: 24px;
+  font-family: var(--f-daktilo);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.fisUst .fisDamga {
+  font-size: 11px;
+  rotate: -2deg;
+}
+.fisBaslik {
+  display: block;
+  margin-top: 9px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--f-daktilo);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.fisYazar {
+  font-weight: 400;
+}
+.fisGovde {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  padding-left: 3ch;
+  font-family: var(--f-daktilo);
+  font-size: 14px;
+  line-height: 24px;
+}
+.meta {
+  color: var(--kagit-soluk);
+}
+.delik {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: #1c110a;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.7);
+}

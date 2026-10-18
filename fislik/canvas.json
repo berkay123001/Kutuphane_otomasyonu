@@ -1,0 +1,18 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-16T22:18:29Z"},
+  "title": "Fişlik — Kütüphane Otomasyonu",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 1960, "title": "01 · Panel", "expand": "fill", "is_interactive": true},
+    "Katalog.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 1820, "title": "02 · Katalog", "expand": "fill", "is_interactive": true},
+    "Kitap.dc.html": {"x": 3040, "y": 0, "w": 1440, "h": 1580, "title": "03 · Kitap ve ödünç", "expand": "fill", "is_interactive": true},
+    "Uye.dc.html": {"x": 4560, "y": 0, "w": 1440, "h": 1520, "title": "04 · Üye profili", "expand": "fill", "is_interactive": true}
+  },
+  "order": ["Main.dc.html", "Katalog.dc.html", "Kitap.dc.html", "Uye.dc.html"],
+  "notes": {
+    "baslik": {"x": 0, "y": -300, "text": "Fişlik — kart kataloğundan doğan kütüphane otomasyonu", "kind": "title1", "maxW": 6000}
+  },
+  "designSystems": []
+}

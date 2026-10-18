@@ -1,0 +1,57 @@
+/* Üye ekranlarında ortak küçük parçalar. */
+
+.bolum {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Kâğıt üstündeki mürekkep düğme (tasarım: .btn-ink) */
+:global(.btn).murekkepDugme {
+  min-height: 44px;
+  padding: 0 18px;
+  border-color: var(--kagit-yazi);
+  background: transparent;
+  color: var(--kagit-yazi);
+  font-size: 14px;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+:global(.btn).murekkepDugme:hover:not(:disabled) {
+  color: var(--kagit-yazi);
+  border-color: var(--mor);
+}
+/* Odağı kaybettirmemek için `disabled` yerine aria-disabled kullanan düğmeler */
+:global(.btn).murekkepDugme[aria-disabled='true'],
+:global(.btn).murekkepDugme[aria-disabled='true']:hover,
+:global(.btn).dugme[aria-disabled='true'],
+:global(.btn).dugme[aria-disabled='true']:hover {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+:global(.btn).murekkepDugme[aria-disabled='true']:hover {
+  border-color: var(--kagit-yazi);
+}
+:global(.btn).murekkepDugme[aria-busy='true'],
+:global(.btn).dugme[aria-busy='true'] {
+  cursor: progress;
+}
+
+/* Başlık satırı açılışı (tasarım: .ln > span, lnUp) */
+.satir {
+  display: block;
+  overflow: hidden;
+  /* Büyük harf İ/Ü/Ş noktaları maskede kırpılmasın; boşluk negatif marjla dengelenir */
+  padding: 0.18em 0 0.05em;
+  margin-top: -0.18em;
+}
+.satir > span {
+  display: block;
+  animation: satirYuksel 0.95s var(--cizgi) 0.1s both;
+}
+@keyframes satirYuksel {
+  from {
+    translate: 0 108%;
+  }
+}

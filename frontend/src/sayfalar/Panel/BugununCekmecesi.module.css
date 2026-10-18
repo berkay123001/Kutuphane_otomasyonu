@@ -1,0 +1,172 @@
+/* Bugünün çekmecesi: karanlık kuyudan yükselen dört sayaç fişi + ahşap ön yüz
+   (Main.dc.html .tray / .well / .sc / .front). */
+
+.tepsi {
+  position: relative;
+  animation: tepsiGir 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.1) 0.55s both;
+}
+@keyframes tepsiGir {
+  from {
+    opacity: 0;
+    translate: 0 50px;
+    scale: 0.97;
+  }
+}
+
+.kuyu {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(10px, 1.6vw, 26px);
+  padding: 0 clamp(14px, 2.6vw, 40px);
+  border-radius: 12px 12px 0 0;
+  background: #1c110a;
+  border: 12px solid var(--wood);
+  border-bottom: 0;
+  box-shadow: inset 0 30px 50px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(0, 0, 0, 0.6);
+  transition: border-color var(--tema-gecis);
+}
+
+/* ---------- sayaç fişi ---------- */
+.fis {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 252px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 32px clamp(12px, 1.4vw, 20px) 0;
+  border-radius: 3px 3px 0 0;
+  text-decoration: none;
+  color: var(--kagit-yazi);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: yuksel 1s cubic-bezier(0.2, 0.95, 0.25, 1.12) both;
+}
+/* .card'ın geçişini ezmek için bileşik seçici (yükleme sırasından bağımsız) */
+.fis:global(.card) {
+  transition: transform 0.6s cubic-bezier(0.2, 1.5, 0.35, 1), box-shadow 0.4s,
+    background-color var(--tema-gecis);
+}
+@keyframes yuksel {
+  from {
+    translate: 0 240px;
+  }
+}
+.fis:nth-child(1) {
+  transform: rotate(-1.4deg);
+}
+.fis:nth-child(2) {
+  transform: rotate(0.8deg) translateY(8px);
+}
+.fis:nth-child(3) {
+  transform: rotate(-0.6deg) translateY(-6px);
+}
+.fis:nth-child(4) {
+  transform: rotate(1.6deg) translateY(4px);
+}
+.fis:hover,
+.fis:focus-visible {
+  color: var(--kagit-yazi);
+  transform: translateY(-46px) rotate(0);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 26px 44px rgba(0, 0, 0, 0.65);
+}
+
+.sekme {
+  position: absolute;
+  top: -24px;
+  height: 26px;
+  padding: 5px 12px 0;
+  border-radius: 4px 4px 0 0;
+  background-color: var(--paper);
+  font-family: var(--f-daktilo);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--kagit-yazi);
+  white-space: nowrap;
+  transition: background-color var(--tema-gecis);
+}
+.fis:nth-child(1) .sekme {
+  left: 16px;
+}
+.fis:nth-child(2) .sekme {
+  left: 34%;
+}
+.fis:nth-child(3) .sekme {
+  left: 50%;
+}
+.fis:nth-child(4) .sekme {
+  right: 16px;
+}
+
+.sayi {
+  display: flex;
+  font-family: var(--f-baslik);
+  font-weight: 800;
+  font-size: clamp(60px, 6.1vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.kirmizi .sayi {
+  color: var(--kirmizi);
+}
+
+.etiket {
+  font-family: var(--f-daktilo);
+  font-weight: 700;
+  font-size: 15px;
+}
+.ayrinti {
+  font-family: var(--f-daktilo);
+  font-size: 13px;
+  color: var(--kagit-soluk);
+}
+
+.gecikmisDamga:global(.stamp) {
+  position: absolute;
+  top: 40px;
+  right: 12px;
+  font-size: 11px;
+}
+
+/* ---------- ahşap ön yüz ---------- */
+.on {
+  position: relative;
+  z-index: 3;
+  margin-top: -74px;
+  min-height: 108px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 4px 4px 12px 12px;
+  background-color: var(--wood);
+  border: 1px solid var(--woodD);
+  box-shadow: 0 -12px 26px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(255, 220, 170, 0.14),
+    0 24px 50px rgba(0, 0, 0, 0.5);
+  transition: background-color var(--tema-gecis);
+}
+
+@media (max-width: 640px) {
+  .kuyu {
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .sekme {
+    letter-spacing: 0.08em;
+    padding: 5px 8px 0;
+  }
+  .fis:nth-child(2) .sekme,
+  .fis:nth-child(3) .sekme {
+    left: 8px;
+  }
+  .fis:nth-child(4) .sekme {
+    right: 8px;
+  }
+}

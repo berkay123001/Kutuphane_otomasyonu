@@ -1,0 +1,72 @@
+/* Ödenmemiş cezalar ve ayırttıkları: kısa fiş satırları. */
+
+.liste {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.satir {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 18px;
+  padding: 38px 22px 14px;
+  border-radius: 4px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+}
+.satir > * {
+  transition: opacity 0.5s;
+}
+.satir[data-bitti='true'] > :not(.sonucDamgasi) {
+  opacity: 0.38;
+}
+
+.bilgi {
+  flex: 1 1 220px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.bilgi b {
+  font-family: var(--f-daktilo);
+  font-size: 18px;
+  line-height: 24px;
+}
+.bilgi span {
+  font-family: var(--f-daktilo);
+  font-size: 13px;
+  color: #4a4536;
+}
+
+.sag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.tutar {
+  font-family: var(--f-baslik);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 0.8;
+  color: var(--kirmizi);
+}
+
+:global(.stamp).sonucDamgasi {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  font-size: 18px;
+  padding: 5px 14px 4px;
+  border-width: 3px;
+  pointer-events: none;
+}

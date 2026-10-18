@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Fişlik — Üye: Elif Demirci</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@500..900&amp;family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;family=Schibsted+Grotesk:wght@400..800&amp;display=swap">
+<style>
+body{margin:0;background:#1E130B}
+a{color:#F0D58E}a:hover{color:#FFE9B0}
+.fx,.fx *,.fx *::before,.fx *::after{box-sizing:border-box}
+.fx sc-for,.fx sc-if{display:contents}
+.fx button{font:inherit;color:inherit;cursor:pointer}
+.fx :focus-visible{outline:2px solid #B3A1FF;outline-offset:3px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.fx{--paper:#EEE4CA;--wood:#6E4629;--wood2:#57371F;--woodD:#2F1C0E;--chip:rgba(30,18,9,.76);--txt:#F6EDDA}
+.fx.night{--paper:#D2C5A4;--wood:#432A18;--wood2:#341F11;--woodD:#170D06;--chip:rgba(8,9,17,.8)}
+.grain,.dr{background-image:repeating-linear-gradient(88deg,rgba(0,0,0,.07) 0 2px,transparent 2px 11px),repeating-linear-gradient(91deg,rgba(255,220,170,.045) 0 1px,transparent 1px 23px)}
+
+/* ---------- kütüphane odası ---------- */
+.room{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#2A190D}
+.shelves{position:absolute;top:-8px;left:-40px;right:-40px;bottom:0;display:flex;filter:brightness(.95) saturate(.95) blur(1.4px);transition:filter 1.8s ease}
+.night .shelves{filter:brightness(.32) saturate(.55) blur(1.4px)}
+.unit{flex:none;width:262px;display:flex;flex-direction:column;padding:34px 12px 0;background:#3B2414;border-left:12px solid #63412A;border-right:12px solid #4C301C;box-shadow:inset 0 0 50px rgba(0,0,0,.55)}
+.shelf{flex:none;height:158px;display:flex;align-items:flex-end;gap:2px;padding:0 6px;background:linear-gradient(#1F120A,#3B2414 45%);border-bottom:14px solid #7A5131;box-shadow:0 12px 12px -8px rgba(0,0,0,.7)}
+.bk{flex:none;position:relative;border-radius:2px 2px 0 0;box-shadow:inset 2px 0 0 rgba(255,255,255,.14),inset -3px 0 0 rgba(0,0,0,.32)}
+.bk::before,.bk::after{content:'';position:absolute;left:2px;right:2px;height:2px;background:rgba(232,196,110,.55)}
+.bk::before{top:12%}.bk::after{bottom:14%}
+.bk.lean{rotate:9deg;transform-origin:0 100%;margin:0 8px 0 4px}
+.bk.gap{visibility:hidden}
+.k1{background-color:#7A2E2A}.k2{background-color:#2B4E36}.k3{background-color:#27395A}.k4{background-color:#B08433}.k5{background-color:#5E4630}.k6{background-color:#463359}.k7{background-color:#CDBE98}.k8{background-color:#2F5A5E}.k9{background-color:#1E1C18}
+.rail{position:absolute;top:22px;left:0;right:0;height:7px;background:#B8913F;box-shadow:0 3px 4px rgba(0,0,0,.5)}
+.ladder{position:absolute;bottom:40px;left:47%;width:78px;height:118vh;rotate:11deg;transform-origin:50% 100%;border-left:9px solid #8A5D36;border-right:9px solid #7A5130;background:repeating-linear-gradient(to bottom,transparent 0 52px,#8A5D36 52px 61px);box-shadow:14px 0 18px rgba(0,0,0,.45)}
+.floor{position:absolute;left:0;right:0;bottom:0;height:70px;background-color:#4E301B;background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.25) 0 2px,transparent 2px 140px);box-shadow:0 -14px 22px rgba(0,0,0,.5)}
+.winwrap{position:absolute;top:44px;right:5%;width:clamp(230px,23vw,340px);height:min(600px,74vh)}
+.win{position:absolute;inset:0;overflow:hidden;border:16px solid #6A4428;border-bottom-width:20px;border-radius:50% 50% 4px 4px / 30% 30% 4px 4px;background:#0B1022;box-shadow:0 0 0 10px #3A2414,0 30px 50px rgba(0,0,0,.6),inset 0 0 30px rgba(0,0,0,.35);filter:blur(.6px);transition:border-color 1.8s}
+.night .win{border-color:#2E1D11}
+.sky-d,.sky-n{position:absolute;inset:0;transition:opacity 1.8s}
+.sky-d{background:linear-gradient(#8FC0E0,#CFE4EE 52%,#F7E3B4)}
+.sky-n{background:linear-gradient(#050A1C,#101B44 58%,#262A55);opacity:0}
+.night .sky-d{opacity:0}.night .sky-n{opacity:1}
+.sun{position:absolute;top:12%;right:14%;width:66px;height:66px;border-radius:50%;background:#FFF4D6;box-shadow:0 0 50px 24px rgba(255,236,190,.75);transition:opacity 1.6s,translate 2s}
+.night .sun{opacity:0;translate:0 90px}
+.moon{position:absolute;top:15%;left:20%;width:48px;height:48px;border-radius:50%;background:#F2EEDC;box-shadow:0 0 36px 10px rgba(226,232,255,.35),inset -9px -5px 0 rgba(120,120,140,.2);opacity:0;translate:0 80px;transition:opacity 1.8s .3s,translate 2.4s .3s cubic-bezier(.2,.8,.2,1)}
+.night .moon{opacity:1;translate:0 0}
+.sky-n i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:tw 3s ease-in-out infinite}
+.sky-n i:nth-child(1){top:8%;left:62%}.sky-n i:nth-child(2){top:14%;left:34%;animation-delay:-1s}.sky-n i:nth-child(3){top:22%;left:78%;animation-delay:-2s}.sky-n i:nth-child(4){top:31%;left:48%;animation-delay:-.5s}.sky-n i:nth-child(5){top:9%;left:12%;animation-delay:-1.6s}.sky-n i:nth-child(6){top:38%;left:22%;animation-delay:-2.4s}.sky-n i:nth-child(7){top:42%;left:70%;animation-delay:-.8s}.sky-n i:nth-child(8){top:4%;left:44%;animation-delay:-2.8s}.sky-n i:nth-child(9){top:50%;left:56%;animation-delay:-1.2s}.sky-n i:nth-child(10){top:26%;left:90%;animation-delay:-2.1s}.sky-n i:nth-child(11){top:47%;left:8%;animation-delay:-.3s}.sky-n i:nth-child(12){top:18%;left:58%;animation-delay:-1.9s}
+@keyframes tw{50%{opacity:.2;scale:.6}}
+.shoot{position:absolute;top:10%;right:6%;width:70px;height:2px;border-radius:2px;background:linear-gradient(90deg,#fff,rgba(255,255,255,0));rotate:-30deg;opacity:0;animation:shoot 9s ease-in 2s infinite}
+@keyframes shoot{0%{opacity:0;translate:0 0}2%{opacity:1}9%{opacity:0;translate:-160px 92px}100%{opacity:0;translate:-160px 92px}}
+.cloud{position:absolute;height:24px;border-radius:30px;background:rgba(255,255,255,.88);filter:blur(4px);animation:drift 46s linear infinite;transition:opacity 1.6s}
+.cloud.ca{top:32%;width:120px;left:-40%}.cloud.cb{top:47%;width:80px;left:-60%;animation-duration:62s;animation-delay:-22s}.cloud.cc{top:21%;width:60px;left:-30%;animation-duration:38s;animation-delay:-30s}
+@keyframes drift{to{translate:560px 0}}
+.night .cloud{opacity:.07}
+.hill{position:absolute;left:-20%;right:-20%;bottom:-42%;height:62%;border-radius:50%;background:#6E8FA0;transition:background-color 1.8s}
+.night .hill{background:#0A1130}
+.mul{position:absolute;background:#6A4428;box-shadow:0 0 3px rgba(0,0,0,.4);transition:background-color 1.8s}
+.night .mul{background:#2E1D11}
+.mul.m1{left:33.3%;top:0;bottom:0;width:7px;margin-left:-3px}.mul.m2{left:66.6%;top:0;bottom:0;width:7px;margin-left:-3px}.mul.m3{top:30%;left:0;right:0;height:7px}.mul.m4{top:54%;left:0;right:0;height:7px}.mul.m5{top:78%;left:0;right:0;height:7px}
+.curt{position:absolute;top:-34px;width:34%;height:calc(100% + 76px);background:repeating-linear-gradient(90deg,#6C1F26 0 9px,#521419 9px 18px);box-shadow:inset 0 -30px 30px rgba(0,0,0,.35),0 10px 20px rgba(0,0,0,.5);transform-origin:50% 0;filter:blur(.8px);animation:sway 7s ease-in-out infinite alternate;transition:filter 1.8s}
+.curt.l{left:-24%;border-radius:0 0 40% 10%}.curt.r{right:-24%;border-radius:0 0 10% 40%;animation-delay:-3s}
+.night .curt{filter:brightness(.38) blur(.8px)}
+@keyframes sway{to{rotate:1.4deg}}
+.sill{position:absolute;left:-28px;right:-28px;bottom:-28px;height:16px;border-radius:2px;background:#7A5131;box-shadow:0 8px 12px rgba(0,0,0,.5);transition:filter 1.8s}
+.night .sill{filter:brightness(.4)}
+.pot{position:absolute;right:16%;bottom:16px;width:40px;height:34px;background:#A0522D;clip-path:polygon(0 0,100% 0,84% 100%,16% 100%)}
+.leaf{position:absolute;right:calc(16% + 11px);bottom:46px;width:18px;height:44px;border-radius:50%;background:#3F6B3A;transform-origin:50% 100%}
+.leaf.la{rotate:-30deg}.leaf.lb{rotate:4deg;height:56px}.leaf.lc{rotate:34deg}
+
+/* ---------- ışık ve gölge ---------- */
+.shade{position:fixed;inset:0;z-index:4;pointer-events:none}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 75% at 55% 42%,rgba(0,0,0,0) 55%,rgba(28,12,2,.32) 100%)}
+.dark{position:absolute;inset:0;background:radial-gradient(ellipse 85% 80% at 50% 40%,rgba(3,5,14,.06) 40%,rgba(3,5,14,.46) 100%);opacity:0;transition:opacity 1.8s}
+.night .dark{opacity:1}
+.light{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden;mix-blend-mode:screen}
+.shafts{position:absolute;inset:0;transition:opacity 1.8s}
+.shafts.sn{opacity:0}
+.night .shafts.sd{opacity:0}.night .shafts.sn{opacity:1}
+.shaft{position:absolute;top:70px;right:calc(5% + 100px);width:130px;height:190vh;transform-origin:50% 0;rotate:46deg;filter:blur(20px);animation:beam 8s ease-in-out infinite alternate}
+.sd .shaft{background:linear-gradient(rgba(255,206,130,.5),rgba(255,206,130,.14) 40%,rgba(255,206,130,0) 72%)}
+.sn .shaft{background:linear-gradient(rgba(150,178,255,.34),rgba(150,178,255,.08) 40%,rgba(150,178,255,0) 70%)}
+.shaft.s2{right:calc(5% + 170px);width:70px;rotate:41deg;animation-delay:-3s}
+.shaft.s3{right:calc(5% + 36px);width:90px;rotate:52deg;animation-delay:-5s}
+@keyframes beam{from{opacity:.65}to{opacity:1;translate:12px 0}}
+.proj{position:absolute;left:22%;top:50%;width:min(560px,46vw);height:360px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr));gap:16px;transform:rotate(-14deg) skewX(-28deg);filter:blur(9px);animation:projMove 30s ease-in-out infinite alternate}
+.sd .proj i{background:rgba(255,212,140,.16)}
+.sn .proj i{background:rgba(160,185,255,.1)}
+@keyframes projMove{to{translate:40px 20px}}
+.dust{position:absolute;inset:0;transition:opacity 1.8s}
+.night .dust{opacity:.35}
+.dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:rgba(255,240,210,.9);animation:mote 16s ease-in-out infinite}
+.dust i:nth-child(1){top:16%;right:16%}.dust i:nth-child(2){top:22%;right:24%;animation-delay:-2s;animation-duration:19s}.dust i:nth-child(3){top:28%;right:20%;animation-delay:-5s}.dust i:nth-child(4){top:34%;right:31%;animation-delay:-7s;animation-duration:21s}.dust i:nth-child(5){top:40%;right:27%;animation-delay:-1s}.dust i:nth-child(6){top:45%;right:38%;animation-delay:-9s;animation-duration:18s}.dust i:nth-child(7){top:51%;right:35%;animation-delay:-4s}.dust i:nth-child(8){top:56%;right:46%;animation-delay:-11s;animation-duration:23s}.dust i:nth-child(9){top:62%;right:42%;animation-delay:-6s}.dust i:nth-child(10){top:67%;right:53%;animation-delay:-3s;animation-duration:20s}.dust i:nth-child(11){top:24%;right:12%;animation-delay:-8s}.dust i:nth-child(12){top:38%;right:18%;animation-delay:-12s;animation-duration:17s}.dust i:nth-child(13){top:58%;right:30%;animation-delay:-10s}.dust i:nth-child(14){top:72%;right:48%;animation-delay:-13s;animation-duration:22s}
+@keyframes mote{0%,100%{translate:0 0;opacity:0}20%{opacity:.9}50%{translate:-40px 30px;opacity:.6}80%{opacity:.9}}
+.lampglow{position:absolute;left:-170px;top:-150px;width:780px;height:780px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,190,100,.36),rgba(255,190,100,.12) 55%,rgba(255,190,100,0));opacity:0;transition:opacity .5s}
+.night .lampglow{opacity:1;animation:flickOn 1.3s linear both}
+@keyframes flickOn{0%{opacity:0}10%{opacity:.8}14%{opacity:.1}22%{opacity:.9}26%{opacity:.3}40%{opacity:1}100%{opacity:1}}
+
+/* ---------- dolap (menü) ---------- */
+.nav{flex:1 1 236px;position:relative;z-index:2;display:flex;flex-direction:column;gap:24px;padding:20px 22px 28px 24px;background-color:var(--wood2);border-right:10px solid var(--woodD);box-shadow:18px 0 40px rgba(0,0,0,.5);transition:background-color 1.4s,border-color 1.4s}
+.blamp{position:relative;align-self:center;width:150px;height:96px;padding:0;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.bl-shade{position:relative;width:132px;height:40px;border-radius:66px 66px 10px 10px / 40px 40px 10px 10px;background:#1E5A3A;box-shadow:inset 0 6px 0 rgba(255,255,255,.18),inset 0 -6px 0 rgba(0,0,0,.3);transition:background-color .6s,box-shadow .6s}
+.night .bl-shade{background:#2F8C58;box-shadow:inset 0 6px 0 rgba(255,255,255,.25),0 0 34px rgba(120,230,160,.4)}
+.bl-shade::after{content:'';position:absolute;left:8px;right:8px;top:100%;height:130px;background:linear-gradient(rgba(255,214,140,.55),rgba(255,214,140,0));clip-path:polygon(8% 0,92% 0,100% 100%,0 100%);opacity:0;transition:opacity .5s;pointer-events:none;mix-blend-mode:screen}
+.night .bl-shade::after{opacity:1}
+.bl-stem{width:8px;height:30px;background:#C9A04E}
+.bl-base{width:96px;height:14px;border-radius:50%;background:#B8913F;box-shadow:inset 0 -3px 0 rgba(0,0,0,.25)}
+.bl-chain{position:absolute;right:30px;top:40px;width:2px;height:24px;background:#C9A04E;transform-origin:50% 0}
+.bl-chain::after{content:'';position:absolute;left:-3px;bottom:-6px;width:8px;height:8px;border-radius:50%;background:#C9A04E}
+.blamp:hover .bl-chain{animation:tug .6s ease}
+@keyframes tug{30%{scale:1 1.35}}
+.brand{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--txt)}
+.brand:hover{color:var(--txt)}
+.brand-w{display:flex;align-items:center;gap:12px;font-family:'Big Shoulders','Arial Narrow',sans-serif;font-weight:800;font-size:44px;line-height:.9;text-transform:uppercase;letter-spacing:.01em}
+.brand-mk{position:relative;width:24px;height:30px;flex:none;background:#EEE4CA;border-radius:0 3px 3px 3px;box-shadow:inset 0 8px 0 -6px #D9584A}
+.brand-mk::before{content:'';position:absolute;left:0;top:-6px;width:12px;height:7px;background:#EEE4CA;border-radius:3px 3px 0 0}
+.brand-s{font-family:'Courier Prime','Courier New',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#D9C9A6}
+.drw{display:flex;flex-wrap:wrap;gap:18px}
+.dr{flex:1 1 180px;min-height:44px;position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:12px 18px 10px;border-radius:5px;background-color:var(--wood);border:1px solid var(--woodD);box-shadow:inset 0 2px 0 rgba(255,220,170,.12),inset 0 -3px 0 rgba(0,0,0,.35),0 3px 0 rgba(0,0,0,.5);color:var(--txt);text-decoration:none;transition:transform .5s cubic-bezier(.2,1.5,.4,1),box-shadow .4s,background-color 1.4s;animation:drIn .7s cubic-bezier(.2,.9,.3,1.15) both}
+.dr:nth-child(2){animation-delay:.08s}.dr:nth-child(3){animation-delay:.16s}.dr:nth-child(4){animation-delay:.24s}
+@keyframes drIn{from{opacity:0;translate:-48px 0}}
+.dr:hover{color:var(--txt);transform:translateY(-3px);box-shadow:inset 0 2px 0 rgba(255,220,170,.14),0 12px 22px rgba(0,0,0,.55),0 3px 0 rgba(0,0,0,.5)}
+.dr.on{transform:translateX(10px);box-shadow:inset 0 2px 0 rgba(255,220,170,.14),0 14px 24px rgba(0,0,0,.5)}
+.dr.on:hover{transform:translateX(10px) translateY(-3px)}
+.dr.on::before{content:'';position:absolute;left:16px;right:16px;top:-11px;height:12px;border-radius:3px 3px 0 0;background:repeating-linear-gradient(to right,#EEE4CA 0 5px,#D2C4A0 5px 6px)}
+.plate{position:relative;width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:5px 10px;background-color:var(--paper);color:#1D1B16;border:2px solid #B8913F;border-radius:2px;font-family:'Courier Prime','Courier New',monospace;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;box-shadow:inset 0 1px 3px rgba(0,0,0,.3);transition:background-color 1.4s}
+.plate::before,.plate::after{content:'';position:absolute;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#C9A04E;box-shadow:inset 0 -1px 0 #7A5E22}
+.plate::before{left:-11px}.plate::after{right:-11px}
+.pull{width:58px;height:13px;border:3px solid #C9A04E;border-top:0;border-radius:0 0 30px 30px;box-shadow:0 2px 0 rgba(0,0,0,.45)}
+.duty{margin-top:auto;display:flex;align-items:center;gap:12px;padding:14px;border-radius:6px;background:rgba(0,0,0,.22);border:1px dashed rgba(236,220,180,.25)}
+.duty-av{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:50%;background:#5636D9;color:#fff;font-family:'Big Shoulders','Arial Narrow',sans-serif;font-weight:700;font-size:18px;letter-spacing:.04em}
+.duty-t{display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--txt)}
+.duty-t span{font-family:'Courier Prime','Courier New',monospace;font-size:12px;color:#D9C9A6}
+
+/* ---------- ortak parçalar ---------- */
+.main{flex:999 1 560px;min-width:0;position:relative;z-index:1;display:flex;flex-direction:column;gap:40px;padding:30px clamp(16px,3.4vw,52px) 90px}
+.topbar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.chip,.eyebrow,.note{display:inline-block;margin:0;padding:6px 12px;border-radius:4px;background:var(--chip);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-family:'Courier Prime','Courier New',monospace;color:#E6DAC0;transition:background-color 1.4s}
+.eyebrow{font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.note{font-size:13px}
+.h1{margin:0;font-family:'Big Shoulders','Arial Narrow',sans-serif;font-weight:800;text-transform:uppercase;line-height:.84;letter-spacing:-.005em;color:var(--txt);text-shadow:0 3px 0 rgba(0,0,0,.35),0 0 44px rgba(0,0,0,.75)}
+.h2{position:relative;display:inline-flex;align-items:center;margin:0;padding:9px 24px 7px;border-radius:3px;background:linear-gradient(#D9B465,#B28839);color:#2A1A0A;font-family:'Big Shoulders','Arial Narrow',sans-serif;font-weight:800;font-size:26px;line-height:1;text-transform:uppercase;letter-spacing:.06em;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(0,0,0,.25),0 8px 18px rgba(0,0,0,.45)}
+.h2::before,.h2::after{content:'';position:absolute;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#7A5A22;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.h2::before{left:8px}.h2::after{right:8px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 22px;border-radius:999px;border:1.5px solid rgba(201,160,78,.6);background:var(--chip);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--txt);font-family:'Schibsted Grotesk','Helvetica Neue',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:transform .3s cubic-bezier(.2,1.6,.4,1),background-color .4s,border-color .25s,opacity .25s}
+.btn:hover{color:var(--txt);border-color:#E8C46A;transform:translateY(-2px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn-v{background:#5636D9;border-color:#5636D9;color:#fff}
+.btn-v:hover{background:#4527C2;border-color:#4527C2;color:#fff}
+.tsw{min-height:44px;display:inline-flex;align-items:center;gap:10px;padding:0 16px 0 6px;border-radius:999px;border:1.5px solid rgba(201,160,78,.6);background:var(--chip);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);color:var(--txt);font-family:'Courier Prime','Courier New',monospace;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.tsw-track{position:relative;width:64px;height:32px;border-radius:999px;background:#2B1A0D;box-shadow:inset 0 2px 5px rgba(0,0,0,.6)}
+.tsw-knob{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#E8C46A;color:#5A3A12;transition:translate .6s cubic-bezier(.3,1.5,.5,1),background-color .6s,color .6s}
+.night .tsw-knob{translate:32px 0;background:#CBD3F5;color:#1E2550}
+.ic-moon{display:none}.night .ic-sun{display:none}.night .ic-moon{display:block}
+.stamp{display:inline-flex;align-items:center;gap:6px;padding:3px 8px 2px;border:2px solid currentColor;border-radius:4px;font-family:'Courier Prime','Courier New',monospace;font-weight:700;font-size:12px;line-height:1.15;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;rotate:-4deg;opacity:.9}
+.ink-v{color:#5636D9}.ink-r{color:#C2301B}.ink-k{color:#3E3A2F}
+.ink-lv{color:#C6B8FF}.ink-lr{color:#FF9A85}
+.slam{animation:slam .55s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes slam{0%{opacity:0;scale:2.8;filter:blur(4px)}50%{opacity:1;scale:.9;filter:blur(0)}72%{scale:1.05}100%{opacity:.9;scale:1}}
+.card{background-color:var(--paper);color:#1D1B16;background-image:linear-gradient(#D9584A,#D9584A),repeating-linear-gradient(to bottom,transparent 0 23px,rgba(64,104,148,.26) 23px 24px);background-size:100% 2px,100% calc(100% - 30px);background-repeat:no-repeat,no-repeat;background-position:0 26px,0 30px;transition:background-color 1.4s}
+
+/* ---------- üye ---------- */
+.head{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.title-h{font-size:clamp(52px,8.2vw,126px)}
+.ln{display:block;overflow:hidden;padding-bottom:.05em}
+.ln>span{display:block;animation:lnUp .95s cubic-bezier(.2,.9,.2,1) .1s both}
+@keyframes lnUp{from{translate:0 108%}}
+.sub{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:8px 14px;border-radius:4px;background:var(--chip);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font-family:'Courier Prime','Courier New',monospace;font-size:15px;color:#EDE2C8}
+.sub .stamp{font-size:12px}
+
+.grid{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
+.lcol{flex:2 1 380px;min-width:0;display:flex;flex-direction:column;gap:26px}
+.rcol{flex:3 1 520px;min-width:0;display:flex;flex-direction:column;gap:44px}
+
+.lc-scene{position:relative;width:100%;max-width:470px;aspect-ratio:1.586;perspective:1200px;animation:dealIn 1.1s cubic-bezier(.2,.9,.3,1.15) .25s both}
+@keyframes dealIn{from{opacity:0;translate:-170px 70px;rotate:-18deg}}
+.lc-tilt{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .25s ease-out}
+.lc-inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 1.05s cubic-bezier(.3,1.3,.4,1)}
+.lc-inner.flipped{transform:rotateY(180deg)}
+.lc-face{position:absolute;inset:0;border-radius:14px;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:0 34px 64px rgba(0,0,0,.6)}
+.lc-front{display:flex;flex-direction:column;background-color:var(--paper);color:#1D1B16;background-image:repeating-linear-gradient(135deg,rgba(86,54,217,.07) 0 1px,transparent 1px 7px);transition:background-color 1.4s}
+.lc-back{transform:rotateY(180deg);display:flex;flex-direction:column;gap:12px;padding-bottom:18px;background:#2A1A0E;color:#EDE6D3}
+.lc-band{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:#5636D9;color:#fff}
+.lc-band span{font-family:'Courier Prime','Courier New',monospace;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.lc-band b{font-family:'Big Shoulders','Arial Narrow',sans-serif;font-size:22px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.lc-body{flex:1 1 auto;display:flex;gap:18px;padding:16px 20px 8px;min-height:0}
+.lc-photo{flex:none;width:27%;aspect-ratio:3/4;display:grid;place-items:center;border-radius:4px;background:#1D1B16;color:#EEE4CA;font-family:'Big Shoulders','Arial Narrow',sans-serif;font-weight:800;font-size:clamp(28px,3vw,44px)}
+.lc-f{flex:1 1 auto;min-width:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px;align-content:start}
+.lc-f div{display:flex;flex-direction:column;gap:1px;min-width:0}
+.lc-f dt{font-family:'Courier Prime','Courier New',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5A5444}
+.lc-f dd{margin:0;font-family:'Courier Prime','Courier New',monospace;font-size:clamp(13px,1.1vw,16px);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lc-f .wide{grid-column:1/-1}
+.lc-bar{display:flex;align-items:stretch;height:34px;margin:0 20px 16px;padding:0 2px}
+.bar{display:block;background:#1D1B16}
+.bar.gap{background:transparent}
+.lc-seal{position:absolute;right:18px;bottom:58px;rotate:-12deg;font-size:12px;mix-blend-mode:multiply}
+.glare{position:absolute;inset:0;pointer-events:none;transition:opacity .35s}
+.mag{height:42px;margin-top:22px;background:#0A0A08}
+.sig{margin:0 20px;padding:8px 12px;border-radius:3px;background:repeating-linear-gradient(90deg,#EEE4CA 0 6px,#E2D6B6 6px 12px);color:#1D1B16;font-family:'Courier Prime','Courier New',monospace;font-style:italic;font-size:18px}
+.rules{margin:0;padding:0 20px 0 38px;font-family:'Courier Prime','Courier New',monospace;font-size:12px;line-height:1.6;color:#E2D6BA}
+.lost{margin:auto 20px 0;font-family:'Courier Prime','Courier New',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#C2B596}
+.lc-acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.panel{display:flex;flex-direction:column;gap:12px;padding:18px 20px;border-radius:8px;background:var(--chip);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(201,160,78,.25);transition:background-color 1.4s}
+.q-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.lbl{font-family:'Courier Prime','Courier New',monospace;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#D9CCAE}
+.q-h b{font-family:'Big Shoulders','Arial Narrow',sans-serif;font-size:32px;line-height:1;color:var(--txt)}
+.q-row{display:flex;gap:8px}
+.qs{flex:1 1 0;height:16px;border-radius:3px;border:1.5px solid rgba(236,220,180,.4);transition:background-color .45s,border-color .45s}
+.qs.on{background:#9D8BFF;border-color:#9D8BFF}
+.facts{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+.facts div{display:flex;flex-direction:column;gap:4px;padding-top:12px;border-top:1.5px solid rgba(236,220,180,.25)}
+.facts dt{font-family:'Courier Prime','Courier New',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#D9CCAE}
+.facts dd{margin:0;font-family:'Big Shoulders','Arial Narrow',sans-serif;font-size:30px;font-weight:700;line-height:1;color:var(--txt)}
+
+.loans{display:flex;flex-direction:column;gap:18px}
+.loan{position:relative;display:flex;flex-direction:column;gap:14px;padding:40px 24px 18px;border-radius:4px;box-shadow:0 18px 36px rgba(0,0,0,.48);transition:opacity .5s,background-color 1.4s;animation:loanIn .8s cubic-bezier(.2,.9,.3,1.15) both}
+.loan:nth-child(1){animation-delay:.35s}.loan:nth-child(2){animation-delay:.5s}.loan:nth-child(3){animation-delay:.65s}
+@keyframes loanIn{from{opacity:0;translate:90px 0;rotate:2deg}}
+.loan.gone>*:not(.loan-stamp){opacity:.38}
+.loan-h{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.loan-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.loan-t b{font-family:'Courier Prime','Courier New',monospace;font-size:20px;line-height:24px}
+.loan-t span{font-family:'Courier Prime','Courier New',monospace;font-size:13px;color:#4A4536}
+.days{flex:none;display:flex;align-items:baseline;gap:6px;font-family:'Big Shoulders','Arial Narrow',sans-serif;font-weight:800}
+.days b{font-size:56px;line-height:.8}
+.days span{font-family:'Courier Prime','Courier New',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.days.soon{color:#5636D9}
+.days.late{color:#C2301B}
+.sqs{display:flex;flex-wrap:wrap;gap:5px}
+.sq{width:20px;height:20px;border-radius:3px;animation:pop .45s cubic-bezier(.3,1.7,.5,1) both}
+@keyframes pop{from{scale:0;opacity:0}}
+.sq.used{background:#5636D9}
+.sq.left{border:1.5px solid #8C836A}
+.sq.over{background:#C2301B}
+.sq.today{box-shadow:0 0 0 2px var(--paper),0 0 0 4px #5636D9}
+.sq.fresh{border-color:#5636D9;border-style:dashed}
+.sq:nth-child(3n){rotate:5deg}.sq:nth-child(4n+1){rotate:-4deg}.sq:nth-child(7n+2){rotate:2deg}
+.loan-f{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
+.loan-d{font-family:'Courier Prime','Courier New',monospace;font-size:14px;font-weight:700}
+.loan-acts{display:flex;flex-wrap:wrap;gap:10px}
+.btn-ink{border-color:#1D1B16;background:transparent;color:#1D1B16;min-height:44px;padding:0 18px;font-size:14px;backdrop-filter:none;-webkit-backdrop-filter:none}
+.btn-ink:hover{color:#1D1B16;border-color:#5636D9}
+.loan-stamp{position:absolute;left:50%;top:50%;translate:-50% -50%;rotate:-9deg;font-size:22px;padding:6px 16px 5px;border-width:3px}
+.loan .ribbon{position:absolute;top:10px;right:20px}
+
+.rshelf{position:relative;border-radius:10px 10px 0 0;background:#1F130A;border:12px solid var(--wood);border-bottom:0;box-shadow:inset 0 30px 50px rgba(0,0,0,.6);transition:border-color 1.4s}
+.rbooks{display:flex;align-items:flex-end;gap:3px;min-height:330px;padding:88px 24px 0;overflow-x:auto}
+.sp{position:relative;flex:none;display:flex;justify-content:center;padding:18px 0;border-radius:3px 3px 1px 1px;text-decoration:none;box-shadow:inset 3px 0 0 rgba(255,255,255,.08),inset -4px 0 0 rgba(0,0,0,.28);transform-origin:0 100%;transition:transform .5s cubic-bezier(.2,1.6,.35,1);animation:shelve .75s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes shelve{from{opacity:0;translate:0 -120px}}
+.sp::before,.sp::after{content:'';position:absolute;left:4px;right:4px;height:2px;background:currentColor;opacity:.75}
+.sp::before{top:9px}.sp::after{bottom:9px}
+.sp:hover,.sp:focus-visible{transform:translateY(-18px) rotate(-4deg);z-index:3}
+.sp-t{writing-mode:vertical-rl;font-family:'Courier Prime','Courier New',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-height:100%}
+.sp-tip{position:absolute;left:50%;bottom:calc(100% + 14px);translate:-50% 0;padding:8px 12px;border-radius:4px;background-color:var(--paper);color:#1D1B16;font-family:'Courier Prime','Courier New',monospace;font-size:12px;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s,translate .35s cubic-bezier(.2,1.6,.4,1);box-shadow:0 10px 20px rgba(0,0,0,.45)}
+.sp:hover .sp-tip,.sp:focus-visible .sp-tip{opacity:1;translate:-50% -6px}
+.c1{background:#6E2A2A;color:#EAD9A4}.c2{background:#24452F;color:#EAD9A4}.c3{background:#22334F;color:#EAD9A4}.c4{background:#B8862A;color:#1D1B16}.c5{background:#5A4632;color:#EAD9A4}.c6{background:#3F2F55;color:#EAD9A4}.c7{background:#D9CBA6;color:#1D1B16}.c8{background:#2D5559;color:#EAD9A4}.c9{background:#1A1A17;color:#D9B45F}
+.h1x{height:196px}.h2x{height:214px}.h3x{height:232px}.h4x{height:178px}
+.w1{width:34px}.w2{width:42px}.w3{width:50px}.w4{width:30px}
+.bookend{flex:none;align-self:flex-end;width:16px;height:150px;margin-left:6px;border-radius:2px 2px 0 0;background:#3A3B32;box-shadow:inset -3px 0 0 rgba(0,0,0,.35);animation:shelve .75s cubic-bezier(.3,1.4,.5,1) 1.6s both}
+.plank{height:20px;border-radius:0 0 6px 6px;background-color:var(--wood);border-top:3px solid #B8913F;box-shadow:0 14px 26px rgba(0,0,0,.5);transition:background-color 1.4s}
+
+@media (max-width:640px){
+.dr.on{transform:none}
+.dr.on:hover{transform:translateY(-3px)}
+.lc-f{grid-template-columns:minmax(0,1fr)}
+.lc-f div:nth-child(n+3){display:none}
+.loan{padding:40px 16px 16px}
+.days b{font-size:42px}
+.winwrap{right:-18%;opacity:.7}
+}
+@media (prefers-reduced-motion: reduce){.fx *,.fx *::before,.fx *::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</helmet>
+<div class="{{rootCls}}" style="position: relative; min-height: 100vh; display: flex; flex-wrap: wrap; align-items: stretch; color: #F6EDDA; font-family: 'Schibsted Grotesk', 'Helvetica Neue', sans-serif; overflow-x: clip">
+
+<div class="room" aria-hidden="true">
+<div class="shelves">
+<sc-for list="{{room}}" as="u" hint-placeholder-count="7"><div class="unit"><sc-for list="{{u.shelves}}" as="sh" hint-placeholder-count="13"><div class="shelf"><sc-for list="{{sh.books}}" as="b" hint-placeholder-count="12"><span class="{{b.cls}}" style="height: {{b.h}}; width: {{b.w}}"></span></sc-for></div></sc-for></div></sc-for>
+<div class="rail"></div>
+<div class="ladder"></div>
+<div class="floor"></div>
+</div>
+<div class="winwrap">
+<div class="win">
+<div class="sky-d"></div>
+<div class="sun"></div>
+<div class="cloud ca"></div><div class="cloud cb"></div><div class="cloud cc"></div>
+<div class="sky-n"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b class="shoot"></b></div>
+<div class="moon"></div>
+<div class="hill"></div>
+<div class="mul m1"></div><div class="mul m2"></div><div class="mul m3"></div><div class="mul m4"></div><div class="mul m5"></div>
+</div>
+<div class="curt l"></div><div class="curt r"></div>
+<div class="sill"><span class="pot"></span><span class="leaf la"></span><span class="leaf lb"></span><span class="leaf lc"></span></div>
+</div>
+</div>
+
+<nav class="nav grain" aria-label="Ana menü">
+<button class="blamp" type="button" onClick="{{toggleTheme}}" aria-label="{{lampLabel}}" aria-pressed="{{isNight}}"><span class="bl-shade"></span><span class="bl-stem"></span><span class="bl-base"></span><span class="bl-chain"></span></button>
+<a class="brand" href="Main.dc.html">
+<span class="brand-w"><span class="brand-mk" aria-hidden="true"></span>Fişlik</span>
+<span class="brand-s">kütüphane otomasyonu</span>
+</a>
+<div class="drw">
+<a class="dr" href="Main.dc.html"><span class="plate"><span>01</span><span>Panel</span></span><span class="pull" aria-hidden="true"></span></a>
+<a class="dr" href="Katalog.dc.html"><span class="plate"><span>02</span><span>Katalog</span></span><span class="pull" aria-hidden="true"></span></a>
+<a class="dr" href="Kitap.dc.html"><span class="plate"><span>03</span><span>Ödünç ver</span></span><span class="pull" aria-hidden="true"></span></a>
+<a class="dr on" href="Uye.dc.html" aria-current="page"><span class="plate"><span>04</span><span>Üyeler</span></span><span class="pull" aria-hidden="true"></span></a>
+</div>
+<div class="duty">
+<span class="duty-av" aria-hidden="true">SA</span>
+<span class="duty-t"><b>Selin Aydın</b><span>Ödünç masası · 2</span></span>
+</div>
+</nav>
+
+<main class="main">
+<div class="topbar">
+<p class="eyebrow">Çekmece 04 — Üyeler</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<button class="tsw" type="button" onClick="{{toggleTheme}}" aria-pressed="{{isNight}}" aria-label="Gece modu"><span class="tsw-track"><span class="tsw-knob"><svg class="ic-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg><svg class="ic-moon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path></svg></span></span>{{themeLabel}}</button>
+<a class="btn btn-v" href="Kitap.dc.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Bu üyeye ödünç ver</a>
+</div>
+</div>
+
+<header class="head">
+<h1 class="h1 title-h"><span class="ln"><span>Elif Demirci</span></span></h1>
+<p class="sub"><span>Ü-2291 · Öğrenci · Yazılım Mühendisliği · 2023’ten beri üye</span><span class="stamp ink-lv slam" style="animation-delay: .9s">Aktif</span><span class="stamp ink-lr slam" style="animation-delay: 1.05s; rotate: 3deg">1 gecikme</span></p>
+</header>
+
+<div class="grid">
+<div class="lcol">
+<div class="lc-scene" onMouseMove="{{tilt}}" onMouseLeave="{{untilt}}">
+<div class="lc-tilt" style="transform: rotateX({{rx}}deg) rotateY({{ry}}deg)">
+<div class="{{innerCls}}">
+<div class="lc-face lc-front" aria-hidden="{{flipped}}">
+<div class="lc-band"><span>Merkez Kütüphane</span><b>Okuyucu kartı</b></div>
+<div class="lc-body">
+<div class="lc-photo" aria-hidden="true">ED</div>
+<dl class="lc-f">
+<div class="wide"><dt>Ad soyad</dt><dd>Elif Demirci</dd></div>
+<div><dt>Okuyucu no</dt><dd>Ü-2291</dd></div>
+<div><dt>Tür</dt><dd>Öğrenci</dd></div>
+<div><dt>Bölüm</dt><dd>Yazılım Müh.</dd></div>
+<div><dt>Geçerlilik</dt><dd>09 / 2027</dd></div>
+</dl>
+</div>
+<div class="lc-bar" aria-hidden="true"><sc-for list="{{bars}}" as="b" hint-placeholder-count="32"><span class="{{b.cls}}" style="width: {{b.w}}"></span></sc-for></div>
+<span class="stamp ink-v lc-seal">Onaylı</span>
+<span class="glare" aria-hidden="true" style="opacity: {{glareOp}}; background: radial-gradient(circle at {{gx}}% {{gy}}%, rgba(255,255,255,.5), rgba(255,255,255,0) 55%)"></span>
+</div>
+<div class="lc-face lc-back" aria-hidden="{{notFlipped}}">
+<div class="mag"></div>
+<p class="sig">E. Demirci</p>
+<ul class="rules">
+<li>Aynı anda en fazla 5 kitap.</li>
+<li>Ödünç süresi 7, 14 ya da 21 gün.</li>
+<li>Kart başkasına devredilemez.</li>
+</ul>
+<p class="lost">Bulunursa Merkez Kütüphane ödünç masasına teslim ediniz.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lc-acts">
+<button class="btn" type="button" onClick="{{flip}}" aria-pressed="{{flipped}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg>{{flipLabel}}</button>
+<p class="note">Kartın üstünde gezin — eğilir.</p>
+</div>
+
+<div class="panel">
+<div class="q-h"><span class="lbl">Ödünç kotası</span><b>{{active}} / 5</b></div>
+<div class="q-row" aria-hidden="true"><sc-for list="{{quota}}" as="k" hint-placeholder-count="5"><span class="{{k.cls}}"></span></sc-for></div>
+</div>
+
+<dl class="facts panel">
+<div><dt>Üyelik</dt><dd>Eylül 2023</dd></div>
+<div><dt>Okunan</dt><dd>47 kitap</dd></div>
+<div><dt>Ortalama süre</dt><dd>11 gün</dd></div>
+<div><dt>Gecikme</dt><dd>1 kitap</dd></div>
+</dl>
+</div>
+
+<div class="rcol">
+<section style="display: flex; flex-direction: column; gap: 20px" aria-labelledby="h-loans">
+<div class="sec-head">
+<h2 class="h2" id="h-loans">Elindekiler</h2>
+<p class="note">Her kare bir gün · mor geçti, boş kaldı, kırmızı gecikti</p>
+</div>
+<div class="loans">
+<sc-for list="{{loans}}" as="l" hint-placeholder-count="3">
+<article class="{{l.cls}}">
+<sc-if value="{{l.isNew}}" hint-placeholder-val="{{ false }}"><span class="stamp ink-v ribbon">Bugün verildi</span></sc-if>
+<div class="loan-h">
+<div class="loan-t"><b>{{l.title}}</b><span>{{l.author}} · {{l.call}}</span></div>
+<div class="{{l.daysCls}}"><b>{{l.leftN}}</b><span>{{l.leftLabel}}</span></div>
+</div>
+<div class="sqs" aria-hidden="true"><sc-for list="{{l.sqs}}" as="q" hint-placeholder-count="14"><span class="{{q.cls}}" style="animation-delay: {{q.delay}}"></span></sc-for></div>
+<div class="loan-f">
+<span class="loan-d">{{l.given}} → {{l.due}}</span>
+<div class="loan-acts">
+<button class="btn btn-ink" type="button" onClick="{{l.renew}}" disabled="{{l.noRenew}}">{{l.renewLabel}}</button>
+<button class="btn btn-ink" type="button" onClick="{{l.ret}}">{{l.retLabel}}</button>
+</div>
+</div>
+<sc-if value="{{l.returned}}" hint-placeholder-val="{{ false }}"><span class="stamp ink-v slam loan-stamp">İade alındı · 17.10</span></sc-if>
+</article>
+</sc-for>
+</div>
+</section>
+
+<section style="display: flex; flex-direction: column; gap: 20px" aria-labelledby="h-shelf">
+<div class="sec-head">
+<h2 class="h2" id="h-shelf">Okuma rafı</h2>
+<p class="note">Son okuduğu 13 kitap · sırta gel, tarihi görünsün</p>
+</div>
+<div>
+<div class="rshelf">
+<div class="rbooks">
+<sc-for list="{{spines}}" as="b" hint-placeholder-count="13">
+<a class="{{b.cls}}" href="Katalog.dc.html" style="animation-delay: {{b.delay}}"><span class="sp-t">{{b.title}}</span><span class="sp-tip">{{b.title}} · {{b.when}}</span></a>
+</sc-for>
+<span class="bookend" aria-hidden="true"></span>
+</div>
+</div>
+<div class="plank grain" aria-hidden="true"></div>
+</div>
+</section>
+</div>
+</div>
+</main>
+
+<div class="shade" aria-hidden="true"><div class="vig"></div><div class="dark"></div></div>
+<div class="light" aria-hidden="true">
+<div class="shafts sd"><span class="shaft s1"></span><span class="shaft s2"></span><span class="shaft s3"></span><div class="proj"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="shafts sn"><span class="shaft s1"></span><span class="shaft s2"></span><div class="proj"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="lampglow"></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["otomatik","gündüz","gece"],"default":"otomatik","section":"Tema"},"$preview":{"width":1440,"height":1520}}'>
+class Component extends DCLogic {
+  roomData() {
+    if (this._room) return this._room;
+    let seed = 11;
+    const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    const units = [];
+    for (let u = 0; u < 7; u++) {
+      const shelves = [];
+      for (let r = 0; r < 13; r++) {
+        const books = [];
+        let w = 0;
+        for (let k = 0; k < 30; k++) {
+          const bw = 12 + Math.floor(rnd() * 15);
+          if (w + bw > 212) break;
+          const gap = rnd() < 0.05;
+          const lean = !gap && rnd() < 0.05;
+          books.push({ cls: 'bk k' + (1 + Math.floor(rnd() * 9)) + (lean ? ' lean' : '') + (gap ? ' gap' : ''), h: (64 + Math.floor(rnd() * 32)) + '%', w: bw + 'px' });
+          w += bw + 2 + (lean ? 12 : 0);
+        }
+        shelves.push({ books: books });
+      }
+      units.push({ shelves: shelves });
+    }
+    this._room = units;
+    return units;
+  }
+  initTheme() {
+    const p = this.props.tema;
+    let t = p === 'gece' ? 'night' : (p === 'gündüz' ? 'day' : null);
+    if (!t) { try { t = window.localStorage.getItem('fislik-tema'); } catch (e) { t = null; } }
+    if (t !== 'night' && t !== 'day') { try { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'night' : 'day'; } catch (e) { t = 'day'; } }
+    this.setState({ theme: t });
+    this._onStore = (e) => { if (e && e.key === 'fislik-tema' && (e.newValue === 'night' || e.newValue === 'day')) this.setState({ theme: e.newValue }); };
+    try { window.addEventListener('storage', this._onStore); } catch (e) {}
+  }
+  setTheme(t) {
+    try { window.localStorage.setItem('fislik-tema', t); } catch (e) {}
+    this.setState({ theme: t });
+  }
+  componentDidMount() { this.initTheme(); }
+  componentDidUpdate(prev) {
+    if (prev.tema !== this.props.tema && (this.props.tema === 'gece' || this.props.tema === 'gündüz')) this.setState({ theme: this.props.tema === 'gece' ? 'night' : 'day' });
+  }
+  componentWillUnmount() { try { window.removeEventListener('storage', this._onStore); } catch (e) {} }
+  renderVals() {
+    const s = this.state || {};
+    const theme = s.theme || (this.props.tema === 'gece' ? 'night' : 'day');
+    const night = theme === 'night';
+    const flipped = !!s.flipped;
+    const renew = s.renew || {};
+    const ret = s.ret || {};
+    const base = [
+      { id: 'tut', title: 'Tutunamayanlar', author: 'Oğuz Atay', call: '894.353 ATA·T', given: '17.10', total: 14, used: 0, over: 0, due0: '31.10', due1: '07.11', isNew: true },
+      { id: 'saa', title: 'Saatleri Ayarlama Enstitüsü', author: 'Ahmet Hamdi Tanpınar', call: '894.353 TAN·S', given: '08.10', total: 14, used: 9, over: 0, due0: '22.10', due1: '29.10', isNew: false },
+      { id: 'sok', title: 'Sokrates’in Savunması', author: 'Platon', call: '184 PLA·S', given: '01.10', total: 14, used: 14, over: 2, due0: '15.10', due1: '15.10', isNew: false }
+    ];
+    const loans = base.map((l, li) => {
+      const rn = !!renew[l.id] && l.over === 0;
+      const rt = !!ret[l.id];
+      const total = l.total + (rn ? 7 : 0);
+      const used = Math.min(l.used, total);
+      const left = total - used;
+      const sqs = [];
+      for (let i = 0; i < total + l.over; i++) {
+        let c = 'sq';
+        if (i < used) c += ' used'; else if (i < total) c += ' left'; else c += ' over';
+        if (i === used && l.over === 0) c += ' today';
+        const fresh = rn && i >= l.total;
+        if (fresh) c += ' fresh';
+        sqs.push({ cls: c, delay: fresh ? ((i - l.total) * 0.06).toFixed(2) + 's' : (0.8 + li * 0.2 + i * 0.035).toFixed(2) + 's' });
+      }
+      return {
+        title: l.title,
+        author: l.author,
+        call: l.call,
+        given: l.given,
+        due: rn ? l.due1 : l.due0,
+        isNew: l.isNew && !rt,
+        sqs: sqs,
+        cls: 'loan card' + (rt ? ' gone' : ''),
+        leftN: l.over > 0 ? l.over : left,
+        leftLabel: l.over > 0 ? 'gün gecikti' : 'gün kaldı',
+        daysCls: 'days' + (l.over > 0 ? ' late' : (left <= 5 ? ' soon' : '')),
+        returned: rt,
+        noRenew: l.over > 0 || rt,
+        renewLabel: l.over > 0 ? 'Uzatılamaz' : (rn ? 'Uzatıldı · geri al' : '7 gün uzat'),
+        retLabel: rt ? 'İadeyi geri al' : 'İade al',
+        renew: () => { const r = Object.assign({}, renew); r[l.id] = !r[l.id]; this.setState({ renew: r }); },
+        ret: () => { const r = Object.assign({}, ret); r[l.id] = !r[l.id]; this.setState({ ret: r }); }
+      };
+    });
+    const active = base.filter((l) => !ret[l.id]).length;
+    const quota = [0, 1, 2, 3, 4].map((i) => ({ cls: i < active ? 'qs on' : 'qs' }));
+    const bw = [2, 1, 3, 1, 1, 2, 4, 1, 2, 1, 3, 2, 1, 1, 2, 3, 1, 2, 1, 4, 1, 1, 3, 1, 2, 2, 1, 3, 1, 2, 1, 2];
+    const bars = bw.map((w, i) => ({ w: (w * 2.2).toFixed(1) + 'px', cls: i % 2 ? 'bar gap' : 'bar' }));
+    const S = [
+      ['Beyaz Kale', 'c3 h2x w1', 'Eyl 2023'],
+      ['Aylak Adam', 'c9 h1x w4', 'Eki 2023'],
+      ['Kürk Mantolu Madonna', 'c1 h2x w2', 'Kas 2023'],
+      ['Huzur', 'c2 h3x w3', 'Oca 2024'],
+      ['Bir Bilim Adamının Romanı', 'c4 h1x w2', 'Mar 2024'],
+      ['Puslu Kıtalar Atlası', 'c6 h3x w2', 'May 2024'],
+      ['Kozmos', 'c8 h4x w3', 'Tem 2024'],
+      ['Sevgili Arsız Ölüm', 'c7 h2x w1', 'Eki 2024'],
+      ['Dokuzuncu Hariciye Koğuşu', 'c5 h1x w4', 'Ara 2024'],
+      ['Fikrimin İnce Gülü', 'c1 h3x w2', 'Şub 2025'],
+      ['Sanatın Öyküsü', 'c3 h3x w3', 'Nis 2025'],
+      ['Memleketimden İnsan Manzaraları', 'c2 h2x w3', 'Eyl 2025'],
+      ['İnce Memed', 'c4 h2x w2', 'Oca 2026']
+    ];
+    const spines = S.map((b, i) => ({ title: b[0], cls: 'sp ' + b[1], when: b[2], delay: (0.7 + i * 0.07).toFixed(2) + 's' }));
+    return {
+      rootCls: 'fx ' + theme,
+      isNight: night,
+      themeLabel: night ? 'Gece' : 'Gündüz',
+      lampLabel: night ? 'Lambayı söndür, gündüze dön' : 'Lambayı yak, geceye geç',
+      toggleTheme: () => this.setTheme(night ? 'day' : 'night'),
+      room: this.roomData(),
+      flipped: flipped,
+      notFlipped: !flipped,
+      innerCls: flipped ? 'lc-inner flipped' : 'lc-inner',
+      flipLabel: flipped ? 'Ön yüze çevir' : 'Kartı çevir',
+      flip: () => this.setState({ flipped: !flipped }),
+      rx: s.rx || 0,
+      ry: s.ry || 0,
+      gx: s.gx == null ? 30 : s.gx,
+      gy: s.gy == null ? 20 : s.gy,
+      glareOp: s.hov ? 1 : 0,
+      tilt: (e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        if (!r.width) return;
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        this.setState({ rx: ((0.5 - y) * 14).toFixed(2), ry: ((x - 0.5) * 20).toFixed(2), gx: Math.round(x * 100), gy: Math.round(y * 100), hov: true });
+      },
+      untilt: () => this.setState({ rx: 0, ry: 0, hov: false }),
+      bars: bars,
+      loans: loans,
+      active: active,
+      quota: quota,
+      spines: spines
+    };
+  }
+}
+</script>
+</body>
+</html>

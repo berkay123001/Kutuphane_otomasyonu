@@ -1,0 +1,171 @@
+/* Hareket defteri: yazıcı yuvasından inen delikli kâğıt, satır satır basılır, damgalar vurulur
+   (Main.dc.html .printer / .slot / .paper / .row). */
+
+.yazici {
+  position: relative;
+  padding-top: 12px;
+}
+
+.yuva {
+  position: absolute;
+  left: -12px;
+  right: -12px;
+  top: 0;
+  height: 20px;
+  z-index: 2;
+  border-radius: 10px;
+  background: #120b06;
+  box-shadow: inset 0 4px 7px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(255, 220, 170, 0.2);
+}
+
+.kagit {
+  position: relative;
+  padding: 30px 54px;
+  box-shadow: 0 26px 46px rgba(0, 0, 0, 0.5);
+  background-color: var(--paper);
+  color: var(--kagit-yazi);
+  transition: background-color var(--tema-gecis);
+  animation: besle 1.6s steps(16, end) 0.8s both;
+}
+@keyframes besle {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+/* kenar delikleri (sürekli form kâğıdı) */
+.kagit::before,
+.kagit::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+  background-image: radial-gradient(circle, #140c06 0 4.6px, transparent 5.3px);
+  background-size: 34px 26px;
+  background-position: center 8px;
+}
+.kagit::before {
+  left: 0;
+  border-right: 1px dashed rgba(29, 27, 22, 0.3);
+}
+.kagit::after {
+  right: 0;
+  border-left: 1px dashed rgba(29, 27, 22, 0.3);
+}
+
+.ust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--kagit-yazi);
+  font-family: var(--f-daktilo);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.satirlar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.satir {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1.7fr) minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 8px;
+  border-bottom: 1px dashed rgba(29, 27, 22, 0.28);
+  font-family: var(--f-daktilo);
+  font-size: 15px;
+  animation: bas 0.55s steps(14, end) both;
+}
+.satir:nth-child(even) {
+  background: rgba(120, 98, 52, 0.09);
+}
+@keyframes bas {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.saat {
+  display: flex;
+  flex-direction: column;
+  color: var(--kagit-soluk);
+  font-size: 13px;
+}
+.saat small {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.kitap {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+.kitap a {
+  color: var(--kagit-yazi);
+  font-weight: 700;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.kitap a:hover {
+  color: var(--mor);
+  text-decoration: underline;
+}
+.kitap small {
+  font-size: 12px;
+  color: var(--kagit-soluk);
+}
+
+.uye {
+  font-family: var(--f-govde);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.uye a {
+  color: var(--kagit-yazi);
+}
+.uye a:hover {
+  color: var(--mor);
+}
+
+.bos {
+  margin: 0;
+  padding: 26px 8px 8px;
+  font-family: var(--f-daktilo);
+  font-size: 15px;
+  text-align: center;
+  color: var(--kagit-soluk);
+  animation: bas 0.55s steps(14, end) 1.7s both;
+}
+
+@media (max-width: 640px) {
+  .satir {
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+  }
+  .uye {
+    grid-column: 2 / 4;
+    grid-row: 2;
+  }
+  .kagit {
+    padding: 26px 42px;
+  }
+}

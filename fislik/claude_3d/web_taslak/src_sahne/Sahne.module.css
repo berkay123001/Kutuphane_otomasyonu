@@ -1,0 +1,93 @@
+.sahne {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #120b06;
+  pointer-events: none;
+}
+
+.filtre {
+  position: absolute;
+  inset: 0;
+  transition: transform 1.4s cubic-bezier(0.6, 0, 0.2, 1);
+}
+/* Arka plan kipi: canlı CSS bulanıklığı yerine önceden bulanıklaştırılmış görsel (zayıf GPU'larda
+   tam ekran blur kare başına pahalı). Yalnızca küçük kare tuvalleri filtrelenir. */
+.sahne[data-kip='arka'] .filtre {
+  transform: scale(1.035);
+}
+.sahne[data-kip='arka'] .odaArka {
+  opacity: 1;
+}
+.sahne[data-kip='arka'] .kare {
+  filter: blur(2.5px) brightness(0.52) saturate(0.88);
+}
+
+.tuval {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 0 0;
+  transition: transform 1.25s cubic-bezier(0.65, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.katman {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+.katman[data-gorunur='true'] {
+  opacity: 1;
+}
+/* Geçiş bitince görünmeyen tema hiç boyanmaz/birleştirilmez */
+.katman[data-etkin='false'] {
+  visibility: hidden;
+}
+
+.oda,
+.odaArka {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+.odaArka {
+  opacity: 0;
+  transition: opacity 1.1s ease;
+}
+
+/* Kareler bölgesel render edildiği için kenarları yumuşatılır; ek yeri görünmez. */
+.kare {
+  position: absolute;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 16px, #000 calc(100% - 16px), transparent),
+    linear-gradient(to bottom, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 16px, #000 calc(100% - 16px), transparent),
+    linear-gradient(to bottom, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+  mask-composite: intersect;
+}
+
+.toz {
+  position: absolute;
+  mix-blend-mode: screen;
+  animation: tozBelir 2.4s ease both;
+}
+@keyframes tozBelir {
+  from {
+    opacity: 0;
+  }
+}
+
+.vinyet {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 85% 80% at 50% 45%, rgba(0, 0, 0, 0) 55%, rgba(18, 8, 2, 0.45) 100%);
+  transition: opacity 1.2s;
+}
+.sahne[data-kip='arka'] .vinyet {
+  background: radial-gradient(ellipse 90% 85% at 55% 40%, rgba(0, 0, 0, 0.05) 40%, rgba(12, 6, 2, 0.6) 100%);
+}

@@ -1,0 +1,102 @@
+/* Panel ekranının ortak parçaları: bölüm, sütunlar, pirinç çerçeveli plaka, çekmece kulpu
+   (fislik/Main.dc.html .cols / .plate / .pull). */
+
+.bolum {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sutunlar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 44px;
+  align-items: flex-start;
+}
+.solSutun {
+  flex: 3 1 520px;
+  min-width: 0;
+  gap: 22px;
+}
+.sagSutun {
+  flex: 2 1 340px;
+  min-width: 0;
+  gap: 22px;
+  scroll-margin-top: 24px;
+}
+.sagSutun:focus {
+  outline: none;
+}
+
+/* ---------- pirinç çerçeveli kâğıt plaka ---------- */
+.plaka {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  background-color: var(--paper);
+  color: var(--kagit-yazi);
+  border: 2px solid var(--pirinc);
+  border-radius: 2px;
+  font-family: var(--f-daktilo);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: background-color var(--tema-gecis);
+}
+.plaka::before,
+.plaka::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: var(--pirinc-acik);
+  box-shadow: inset 0 -1px 0 #7a5e22;
+}
+.plaka::before {
+  left: -11px;
+}
+.plaka::after {
+  right: -11px;
+}
+
+.plakaGenis {
+  width: auto;
+  min-width: min(360px, 80%);
+  justify-content: center;
+  gap: 18px;
+}
+
+.plakaSutun {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 6px 12px;
+  text-align: left;
+}
+.plakaSutun b {
+  font-size: 20px;
+  letter-spacing: 0.06em;
+}
+.plakaSutun span {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- çekmece kulpu ---------- */
+.kulp {
+  width: 58px;
+  height: 13px;
+  border: 3px solid var(--pirinc-acik);
+  border-top: 0;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.45);
+}

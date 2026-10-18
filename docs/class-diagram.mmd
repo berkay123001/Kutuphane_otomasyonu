@@ -2,7 +2,7 @@
 title: Fişlik — Kütüphane Otomasyonu · Class Diagram
 ---
 classDiagram
-    direction LR
+    direction TB
 
     class Kisi {
         <<abstract>>
@@ -11,24 +11,25 @@ classDiagram
         -soyad : String
         -eposta : String
         -telefon : String
-        +tamAd() String
     }
 
     class Uye {
-        -uyeNo : String
+        -/uyeNo : String
         -tur : UyeTuru
         -bolum : String
         -uyelikTarihi : Date
         -kartGecerlilik : Date
         -aktif : boolean
         +aktifOduncSayisi() int
-        +oduncAlabilirMi() boolean
+        +oduncEngelleri() List~String~
+        +rezervasyonEngelleri() List~String~
     }
 
     class Gorevli {
         -kullaniciAdi : String
         -sifreHash : String
         -aktif : boolean
+        -olusturmaZamani : DateTime
     }
 
     class Kategori {
@@ -45,16 +46,16 @@ classDiagram
         -yayinevi : String
         -yayinYili : int
         -yerNumarasi : String
+        -olusturmaZamani : DateTime
         +raftakiKopyaSayisi() int
     }
 
     class Kopya {
         -id : Long
-        -barkod : String
+        -/barkod : String
         -blok : String
         -rafNo : int
         -durum : KopyaDurumu
-        +raftaMi() boolean
     }
 
     class Odunc {
@@ -66,7 +67,7 @@ classDiagram
         +gecikmisMi() boolean
         +gecikmeGunu() int
         +uzat() void
-        +iadeAl() void
+        +iadeAl() Ceza [0..1]
     }
 
     class Ceza {
@@ -75,6 +76,7 @@ classDiagram
         -tutar : Decimal
         -odendi : boolean
         -odemeZamani : DateTime
+        -olusturmaZamani : DateTime
         +ode() void
     }
 
@@ -126,7 +128,7 @@ classDiagram
     Kisi <|-- Gorevli
 
     Kategori "1" -- "0..*" Kitap : sınıflandırır
-    Kitap "1" *-- "1..*" Kopya : kopyaları
+    Kitap "1" *-- "0..*" Kopya : kopyaları
 
     Uye "1" -- "0..*" Odunc : alır
     Kopya "1" -- "0..*" Odunc : verilir
@@ -134,7 +136,7 @@ classDiagram
 
     Uye "1" -- "0..*" Rezervasyon : yapar
     Kitap "1" -- "0..*" Rezervasyon : için
-    Rezervasyon "0..1" --> "0..1" Kopya : ayrılan
+    Rezervasyon "0..*" --> "0..1" Kopya : ayrılan
 
     Hareket "0..*" --> "1" Kitap
     Hareket "0..*" --> "0..1" Kopya
@@ -145,3 +147,7 @@ classDiagram
     Kopya ..> KopyaDurumu
     Rezervasyon ..> RezervasyonDurumu
     Hareket ..> HareketTipi
+
+    note for Uye "En fazla 5 aktif ödünç.<br>Pasif, kartı dolmuş, gecikmesi ya da<br>ödenmemiş cezası olan ödünç alamaz."
+    note for Odunc "Bir kopyanın aynı anda tek aktif ödüncü olur.<br>Süre 7 / 14 / 21 gün; bir kez +7 gün uzatılır<br>(gecikmişse ya da bekleyen varsa uzatılamaz).<br>Geç iadede gün başına 2 TL ceza."
+    note for Rezervasyon "Rafta kopya varsa HAZIR (3 gün), yoksa BEKLIYOR.<br>İade edilen kopya sıradaki BEKLIYOR'a ayrılır.<br>Bir üye aynı kitap için tek açık rezervasyon tutar."

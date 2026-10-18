@@ -1,0 +1,356 @@
+/* Fişlik — tasarım değişkenleri ve ortak parçalar (fislik/*.dc.html ortak CSS'inden taşındı).
+   Gece teması: <html data-tema="gece">. Ekranlara özel stiller *.module.css dosyalarındadır. */
+
+:root {
+  --paper: #eee4ca;
+  --paper2: #d8ccac;
+  --wood: #6e4629;
+  --wood2: #57371f;
+  --woodD: #2f1c0e;
+  /* Buzlu cam (backdrop-filter) yerine biraz daha opak düz zemin: zayıf GPU'larda kaydırma akıcı kalır */
+  --chip: rgba(30, 18, 9, 0.86);
+  --txt: #f6edda;
+  --felt: #1e2a23;
+
+  --mor: #5636d9;
+  --mor-koyu: #4527c2;
+  --mor-acik: #8d7bff;
+  --mor-soluk: #c6b8ff;
+  --odak: #b3a1ff;
+  --kirmizi: #c2301b;
+  --kirmizi-acik: #ff9a85;
+  --murekkep: #3e3a2f;
+  --pirinc: #b8913f;
+  --pirinc-acik: #c9a04e;
+  --altin: #e8c46a;
+  --kagit-yazi: #1d1b16;
+  --kagit-soluk: #5a5444;
+  --chip-yazi: #e6dac0;
+  --chip-soluk: #d9c9a6;
+
+  --f-baslik: 'Big Shoulders', 'Arial Narrow', sans-serif;
+  --f-daktilo: 'Courier Prime', 'Courier New', monospace;
+  --f-govde: 'Schibsted Grotesk', 'Helvetica Neue', sans-serif;
+
+  --yay: cubic-bezier(0.2, 1.5, 0.4, 1);
+  --yay-sert: cubic-bezier(0.3, 1.5, 0.5, 1);
+  --giris: cubic-bezier(0.2, 0.9, 0.3, 1.15);
+  --cizgi: cubic-bezier(0.2, 0.9, 0.2, 1);
+  --tema-gecis: 1.4s;
+
+  --kabartma: inset 0 2px 0 rgba(255, 220, 170, 0.12), inset 0 -3px 0 rgba(0, 0, 0, 0.35),
+    0 3px 0 rgba(0, 0, 0, 0.5);
+  --golge-kagit: 0 22px 44px rgba(0, 0, 0, 0.5);
+  --damar: repeating-linear-gradient(88deg, rgba(0, 0, 0, 0.07) 0 2px, transparent 2px 11px),
+    repeating-linear-gradient(91deg, rgba(255, 220, 170, 0.045) 0 1px, transparent 1px 23px);
+
+  color-scheme: dark;
+}
+
+html[data-tema='gece'] {
+  --paper: #d2c5a4;
+  --paper2: #bdb091;
+  --wood: #432a18;
+  --wood2: #341f11;
+  --woodD: #170d06;
+  --chip: rgba(8, 9, 17, 0.88);
+  --felt: #141d18;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #1e130b;
+  color: var(--txt);
+  font-family: var(--f-govde);
+  -webkit-font-smoothing: antialiased;
+}
+
+#kok {
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+a {
+  color: #f0d58e;
+}
+a:hover {
+  color: #ffe9b0;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+:focus-visible {
+  outline: 2px solid var(--odak);
+  outline-offset: 3px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.grain {
+  background-image: var(--damar);
+}
+
+/* ---------- yazı parçaları ---------- */
+.chip,
+.eyebrow,
+.note {
+  display: inline-block;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: var(--chip);
+  font-family: var(--f-daktilo);
+  color: var(--chip-yazi);
+  transition: background-color var(--tema-gecis);
+}
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.note {
+  font-size: 13px;
+}
+
+.h1 {
+  margin: 0;
+  font-family: var(--f-baslik);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.84;
+  letter-spacing: -0.005em;
+  color: var(--txt);
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.35), 0 0 44px rgba(0, 0, 0, 0.75);
+}
+
+.h2 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 9px 24px 7px;
+  border-radius: 3px;
+  background: linear-gradient(#d9b465, #b28839);
+  color: #2a1a0a;
+  font-family: var(--f-baslik);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), inset 0 -2px 0 rgba(0, 0, 0, 0.25),
+    0 8px 18px rgba(0, 0, 0, 0.45);
+}
+.h2::before,
+.h2::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: #7a5a22;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.h2::before {
+  left: 8px;
+}
+.h2::after {
+  right: 8px;
+}
+
+.sec-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+/* ---------- düğmeler ---------- */
+.btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(201, 160, 78, 0.6);
+  background: var(--chip);
+  color: var(--txt);
+  font-family: var(--f-govde);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.2, 1.6, 0.4, 1), background-color 0.4s,
+    border-color 0.25s, opacity 0.3s;
+}
+.btn:hover:not(:disabled) {
+  color: var(--txt);
+  border-color: var(--altin);
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  opacity: 0.55;
+}
+.btn-v {
+  background: var(--mor);
+  border-color: var(--mor);
+  color: #fff;
+}
+.btn-v:hover:not(:disabled) {
+  background: var(--mor-koyu);
+  border-color: var(--mor-koyu);
+  color: #fff;
+}
+.ibtn {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201, 160, 78, 0.6);
+  background: var(--chip);
+  color: var(--txt);
+  transition: border-color 0.25s, transform 0.3s;
+}
+.ibtn:hover {
+  color: var(--txt);
+  border-color: var(--altin);
+  transform: rotate(-8deg);
+}
+
+/* ---------- damga ---------- */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px 2px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  font-family: var(--f-daktilo);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.15;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  rotate: -4deg;
+  opacity: 0.9;
+}
+.ink-v {
+  color: var(--mor);
+}
+.ink-r {
+  color: var(--kirmizi);
+}
+.ink-k {
+  color: var(--murekkep);
+}
+.ink-lv {
+  color: var(--mor-soluk);
+}
+.ink-lr {
+  color: var(--kirmizi-acik);
+}
+.slam {
+  animation: slam 0.55s var(--yay-sert) both;
+}
+@keyframes slam {
+  0% {
+    opacity: 0;
+    scale: 2.8;
+    filter: blur(4px);
+  }
+  50% {
+    opacity: 1;
+    scale: 0.9;
+    filter: blur(0);
+  }
+  72% {
+    scale: 1.05;
+  }
+  100% {
+    opacity: 0.9;
+    scale: 1;
+  }
+}
+
+/* ---------- fiş kâğıdı ---------- */
+.card {
+  background-color: var(--paper);
+  color: var(--kagit-yazi);
+  background-image: linear-gradient(#d9584a, #d9584a),
+    repeating-linear-gradient(to bottom, transparent 0 23px, rgba(64, 104, 148, 0.26) 23px 24px);
+  background-size: 100% 2px, 100% calc(100% - 30px);
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 26px, 0 30px;
+  transition: background-color var(--tema-gecis);
+}
+
+/* ---------- ortak giriş animasyonları ---------- */
+@keyframes lnUp {
+  from {
+    translate: 0 105%;
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes yukselBelir {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* İşlem sürerken odak kaybolmasın diye disabled yerine aria-disabled kullanılan düğmeler */
+.btn[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.btn[aria-disabled='true']:hover {
+  transform: none;
+  border-color: rgba(201, 160, 78, 0.6);
+}
+.btn-v[aria-disabled='true']:hover {
+  background: var(--mor);
+  border-color: var(--mor);
+}

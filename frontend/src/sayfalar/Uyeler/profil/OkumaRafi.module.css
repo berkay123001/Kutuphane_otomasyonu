@@ -1,0 +1,123 @@
+/* Okuma rafı: düşen kitap sırtları, kitap dayağı, raf tahtası (fislik/Uye.dc.html .rshelf). */
+
+.raf {
+  position: relative;
+  border-radius: 10px 10px 0 0;
+  background: #1f130a;
+  border: 12px solid var(--wood);
+  border-bottom: 0;
+  box-shadow: inset 0 30px 50px rgba(0, 0, 0, 0.6);
+  transition: border-color var(--tema-gecis);
+}
+.kitaplar {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  min-height: 330px;
+  margin: 0;
+  padding: 88px 24px 0;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--pirinc) transparent;
+}
+
+.yer {
+  display: contents;
+}
+
+.sirt {
+  position: relative;
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding: 18px 0;
+  border-radius: 3px 3px 1px 1px;
+  text-decoration: none;
+  box-shadow: inset 3px 0 0 rgba(255, 255, 255, 0.08), inset -4px 0 0 rgba(0, 0, 0, 0.28);
+  transform-origin: 0 100%;
+  transition: transform 0.5s cubic-bezier(0.2, 1.6, 0.35, 1);
+  animation: rafaDiz 0.75s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+@keyframes rafaDiz {
+  from {
+    opacity: 0;
+    translate: 0 -120px;
+  }
+}
+.sirt::before,
+.sirt::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.75;
+}
+.sirt::before {
+  top: 9px;
+}
+.sirt::after {
+  bottom: 9px;
+}
+.sirt:hover,
+.sirt:focus-visible {
+  transform: translateY(-18px) rotate(-4deg);
+  z-index: 3;
+}
+.sirtYazi {
+  writing-mode: vertical-rl;
+  font-family: var(--f-daktilo);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 100%;
+}
+.ipucu {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 14px);
+  translate: -50% 0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: var(--paper);
+  color: var(--kagit-yazi);
+  font-family: var(--f-daktilo);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, translate 0.35s cubic-bezier(0.2, 1.6, 0.4, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
+}
+.sirt:hover .ipucu,
+.sirt:focus-visible .ipucu {
+  opacity: 1;
+  translate: -50% -6px;
+}
+
+.dayak {
+  flex: none;
+  align-self: flex-end;
+  width: 16px;
+  height: 150px;
+  margin-left: 6px;
+  border-radius: 2px 2px 0 0;
+  background: #3a3b32;
+  box-shadow: inset -3px 0 0 rgba(0, 0, 0, 0.35);
+  animation: rafaDiz 0.75s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+.tahta {
+  height: 20px;
+  border-radius: 0 0 6px 6px;
+  background-color: var(--wood);
+  border-top: 3px solid var(--pirinc);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.5);
+  transition: background-color var(--tema-gecis);
+}

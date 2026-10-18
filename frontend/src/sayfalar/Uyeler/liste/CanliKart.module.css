@@ -1,0 +1,239 @@
+/* Yeni üye formunun yanındaki canlı okuyucu kartı (tasarım: Uye.dc.html okuyucu kartı). */
+
+.sahne {
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  perspective: 1200px;
+  animation: kartGelir 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.15) 0.15s both;
+}
+@keyframes kartGelir {
+  from {
+    opacity: 0;
+    translate: 120px 40px;
+    rotate: 14deg;
+  }
+}
+
+.ic {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1.586;
+  transform-style: preserve-3d;
+}
+
+.yuz {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.55), 0 2px 0 rgba(255, 255, 255, 0.25) inset;
+}
+
+.on {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(135deg, rgba(86, 54, 217, 0.05) 0 2px, transparent 2px 9px);
+  color: var(--kagit-yazi);
+  transition: background-color var(--tema-gecis);
+}
+
+.serit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--mor);
+  color: #fff;
+}
+.serit span {
+  font-family: var(--f-daktilo);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.serit b {
+  font-family: var(--f-baslik);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.govde {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  gap: 14px;
+  padding: 14px 16px 6px;
+}
+.foto {
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: #1d1b16;
+  color: var(--paper);
+  font-family: var(--f-baslik);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.alanlar {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.ikili {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.alan {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.etiket {
+  font-family: var(--f-daktilo);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--kagit-soluk);
+}
+.deger {
+  overflow: hidden;
+  font-family: var(--f-daktilo);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.deger[data-bos='true'] {
+  color: rgba(29, 27, 22, 0.28);
+}
+.imlec {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  margin-left: 2px;
+  vertical-align: -0.12em;
+  background: var(--mor);
+  animation: imlecYan 1s steps(1) infinite;
+}
+@keyframes imlecYan {
+  50% {
+    opacity: 0;
+  }
+}
+
+.barkod {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  height: 34px;
+  margin: 0 16px 14px;
+  max-width: 62%;
+}
+.cizgi {
+  display: block;
+  height: 100%;
+  background: #1d1b16;
+  transform-origin: bottom;
+}
+.bosCizgi {
+  flex: 1;
+  margin-right: 3px;
+  background: repeating-linear-gradient(to bottom, rgba(29, 27, 22, 0.14) 0 3px, transparent 3px 6px);
+}
+
+.damgaYeri {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+}
+.damgaYeri :global(.stamp) {
+  font-size: 15px;
+  padding: 4px 10px 3px;
+}
+.taslakDamga {
+  opacity: 0.35;
+}
+
+.tarama {
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  pointer-events: none;
+}
+
+/* ---------- arka yüz ---------- */
+.arka {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 14px;
+  background: #2a1a0e;
+  color: #e6dac0;
+}
+.manyetik {
+  height: 44px;
+  margin-top: 20px;
+  background: #0d0805;
+}
+.imzaSeridi {
+  margin: 0 18px;
+  padding: 6px 12px;
+  background: repeating-linear-gradient(-45deg, #efe6cf 0 6px, #e4d9bd 6px 12px);
+  border-radius: 2px;
+}
+.imza {
+  display: inline-block;
+  font-family: 'Brush Script MT', 'Segoe Script', cursive;
+  font-size: 24px;
+  color: #27306b;
+  clip-path: inset(0 100% 0 0);
+}
+.imza[data-yaz='true'] {
+  animation: imzaYaz 1.1s ease-out 2.3s forwards;
+}
+@keyframes imzaYaz {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.kurallar {
+  margin: 0;
+  padding: 0 18px 0 34px;
+  font-family: var(--f-daktilo);
+  font-size: 11px;
+  line-height: 1.6;
+}
+.altNot {
+  margin: auto 18px 0;
+  font-family: var(--f-daktilo);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.durum {
+  margin: 0;
+  padding: 5px 12px;
+  border-radius: 4px;
+  background: var(--chip);
+  font-family: var(--f-daktilo);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--chip-yazi);
+}
