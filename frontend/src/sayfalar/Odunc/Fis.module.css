@@ -1,0 +1,227 @@
+/* 03 · Kitap — ızgara, katalog fişi, kopya kartları ve hareketler (fislik/Kitap.dc.html .rcard / .cp / .hist). */
+
+.izgara {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 44px;
+  align-items: flex-start;
+}
+.solSutun {
+  flex: 3 1 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.sagSutun {
+  flex: 2 1 400px;
+  min-width: 0;
+}
+.bos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+.bos h1 {
+  font-size: clamp(44px, 6vw, 96px);
+}
+
+/* ---------- katalog fişi ---------- */
+.kayit {
+  position: relative;
+  min-height: 310px;
+  padding: 40px 30px 52px;
+  border-radius: 4px;
+  box-shadow: 0 34px 64px rgba(0, 0, 0, 0.55);
+  transform-origin: 50% 100%;
+  animation: kartGir 1s cubic-bezier(0.2, 0.9, 0.3, 1.1) 0.2s both;
+}
+@keyframes kartGir {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(-70deg);
+  }
+}
+.kayitIzgara {
+  display: grid;
+  grid-template-columns: minmax(84px, auto) minmax(0, 1fr);
+  gap: 20px;
+  font-family: var(--f-daktilo);
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 24px;
+}
+.kayitIzgara p {
+  margin: 0;
+}
+.yerNo {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+}
+.daktiloSatiri {
+  min-height: 24px;
+}
+.girintili {
+  padding-left: 3ch;
+}
+.imlec {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: -0.18em;
+  background: var(--mor);
+  animation: global(blink) 1s steps(1) infinite;
+}
+.kayitAlt {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--f-daktilo);
+  font-size: 12px;
+  color: var(--kagit-soluk);
+}
+.delik {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: #24170d;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- kopyalar ---------- */
+.bolum {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.bolumSik {
+  gap: 16px;
+}
+.kopyalar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.kopya {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px 18px;
+  border-radius: 4px;
+  background-color: var(--paper);
+  color: var(--kagit-yazi);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+  transition: background-color var(--tema-gecis), box-shadow 0.4s var(--yay);
+  animation: kopyaGir 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+@keyframes kopyaGir {
+  from {
+    opacity: 0;
+    translate: 0 30px;
+    rotate: -3deg;
+  }
+}
+.soluk {
+  background-color: var(--paper2);
+}
+.halkali {
+  box-shadow: 0 0 0 3px var(--mor-acik), 0 18px 34px rgba(0, 0, 0, 0.45);
+}
+.kopyaNo {
+  font-family: var(--f-baslik);
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 0.9;
+}
+.barkod {
+  font-family: var(--f-daktilo);
+  font-size: 13px;
+  font-weight: 700;
+}
+.kopyaSatir {
+  font-size: 14px;
+  color: #4a4536;
+}
+.kopyaDamga {
+  align-self: flex-start;
+  margin-top: 6px;
+}
+.bayrak {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--f-daktilo);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mor);
+  animation: global(yukselBelir) 0.4s var(--giris) both;
+}
+
+/* ---------- hareketler ---------- */
+.hareketler {
+  list-style: none;
+  margin: 0;
+  padding: 6px 18px;
+  border-radius: 6px;
+  background: var(--chip);
+  transition: background-color var(--tema-gecis);
+}
+.hareket {
+  display: grid;
+  grid-template-columns: 72px 44px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 4px;
+  border-bottom: 1px dashed rgba(236, 220, 180, 0.22);
+  font-family: var(--f-daktilo);
+  font-size: 14px;
+  color: #ede2c8;
+}
+.hareket:last-child {
+  border-bottom: 0;
+}
+.hareket > span:first-child {
+  color: #c9bc9c;
+}
+.hareketKisi {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hareketEtiketi {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mor-soluk);
+}
+.hareketGec {
+  color: var(--kirmizi-acik);
+}
+
+@media (max-width: 640px) {
+  .kayit {
+    padding: 36px 18px 52px;
+  }
+  .hareket {
+    grid-template-columns: 60px minmax(0, 1fr) auto;
+  }
+  .hareket > span:nth-child(2) {
+    display: none;
+  }
+}

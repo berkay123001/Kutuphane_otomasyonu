@@ -4,3 +4,19 @@
 # Editör / sistem
 .DS_Store
 *.swp
+
+# Ortam değişkenleri (gizli bilgiler)
+.env
+.env.*
+!.env.example
+
+# 3B çalışmanın büyük ikili varlıkları (Blender dosyaları, indirilen dokular, render'lar).
+# Sahneyi üreten betikler fislik/claude_3d/scripts/ altında izlenir.
+*.blend
+fislik/claude_3d/assets/
+fislik/claude_3d/renders/
+fislik/claude_3d/web_taslak/public_*/
+
+# Python önbelleği
+__pycache__/
+*.pyc

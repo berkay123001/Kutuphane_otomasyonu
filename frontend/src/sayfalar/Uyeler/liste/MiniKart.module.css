@@ -1,0 +1,167 @@
+/* Dolaptaki mini okuyucu kartı (profil kartının küçük kardeşi). */
+
+.kap {
+  position: relative;
+  display: block;
+  aspect-ratio: 1.586;
+  perspective: 900px;
+  color: var(--kagit-yazi);
+  text-decoration: none;
+  border-radius: 12px;
+  animation: kartDagit 0.8s var(--giris) both;
+}
+.kap:hover {
+  color: var(--kagit-yazi);
+}
+@keyframes kartDagit {
+  from {
+    opacity: 0;
+    translate: -60px 40px;
+    rotate: -9deg;
+  }
+}
+.kart {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(135deg, rgba(86, 54, 217, 0.07) 0 1px, transparent 1px 7px);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.55);
+  transform-style: preserve-3d;
+  transition: translate 0.45s var(--yay), box-shadow 0.35s, background-color var(--tema-gecis);
+}
+.kap:hover .kart,
+.kap:focus-visible .kart {
+  translate: 0 -6px;
+  box-shadow: 0 28px 44px rgba(0, 0, 0, 0.6);
+}
+.kap[data-soluk='true'] .kart {
+  filter: saturate(0.6);
+}
+
+.serit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--mor);
+  color: #fff;
+}
+.serit span {
+  font-family: var(--f-daktilo);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.serit b {
+  font-family: var(--f-baslik);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.kap[data-soluk='true'] .serit {
+  background: #6f6788;
+}
+
+.govde {
+  flex: 1 1 auto;
+  display: flex;
+  gap: 14px;
+  min-height: 0;
+  padding: 12px 14px 6px;
+}
+.foto {
+  flex: none;
+  width: 26%;
+  aspect-ratio: 3 / 4;
+  display: grid;
+  place-items: center;
+  border-radius: 3px;
+  background: var(--kagit-yazi);
+  color: #eee4ca;
+  font-family: var(--f-baslik);
+  font-weight: 800;
+  font-size: 28px;
+}
+.bilgi {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: var(--f-daktilo);
+}
+.ad {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.15;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.no {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--mor);
+}
+.ek {
+  font-size: 12px;
+  color: var(--kagit-soluk);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px 12px;
+  font-family: var(--f-daktilo);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--kagit-soluk);
+}
+.noktalar {
+  display: flex;
+  gap: 5px;
+}
+.nokta {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid #8c836a;
+}
+.nokta[data-dolu='true'] {
+  background: var(--mor);
+  border-color: var(--mor);
+}
+
+.damgalar {
+  position: absolute;
+  right: 12px;
+  bottom: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: none;
+}
+.damgalar :global(.stamp) {
+  font-size: 11px;
+}
+.parilti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}

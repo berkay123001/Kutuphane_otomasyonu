@@ -1,0 +1,311 @@
+/* Seçili fiş sütunu — büyük katalog fişi, eylemler, üye seçici, hareketler (Katalog.dc.html .pcol … .acts). */
+
+.onizleme {
+  flex: 2 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.baslikSatiri {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ---------- büyük fiş ---------- */
+.buyuk {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  padding: 40px 28px 46px;
+  border-radius: 4px;
+  box-shadow: 0 34px 64px rgba(0, 0, 0, 0.55);
+  transform-origin: 50% 100%;
+  animation: fisCevir 0.85s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+@keyframes fisCevir {
+  from {
+    opacity: 0;
+    transform: perspective(900px) rotateX(-78deg);
+  }
+}
+.kayit {
+  display: grid;
+  grid-template-columns: minmax(76px, auto) minmax(0, 1fr);
+  gap: 18px;
+  font-family: var(--f-daktilo);
+  font-size: 15px;
+  line-height: 24px;
+}
+.kayit p {
+  margin: 0;
+}
+.kayitYer {
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+}
+.icerli {
+  padding-left: 3ch;
+  overflow-wrap: anywhere;
+}
+.kayitAlt {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--f-daktilo);
+  font-size: 12px;
+  color: var(--kagit-soluk);
+}
+.delik {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-radius: 50%;
+  background: #24170d;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.7);
+}
+.durumDamga {
+  position: absolute;
+  right: 26px;
+  bottom: 44px;
+  font-size: 14px;
+}
+.ayirtmaDamga {
+  position: absolute;
+  right: 30px;
+  top: 12px;
+  font-size: 13px;
+}
+.uyari {
+  align-self: flex-start;
+}
+
+/* ---------- eylemler ---------- */
+.eylemAlani {
+  display: flex;
+  flex-direction: column;
+}
+.eylemler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.bekliyor {
+  opacity: 0.6;
+  cursor: progress;
+}
+/* yükseklik açılırken taşma motion ile gizlenir, açıldıktan sonra gölge serbest kalır */
+.seciciKap {
+  position: relative;
+}
+
+/* ---------- üye seçici ---------- */
+.secici {
+  position: relative;
+  margin-top: 16px;
+  padding: 16px 20px 14px 76px;
+  border-radius: 4px;
+  background-color: var(--paper);
+  color: var(--kagit-yazi);
+  box-shadow: var(--golge-kagit);
+  transform-origin: 50% 0;
+  transition: background-color var(--tema-gecis);
+}
+.secici::before {
+  content: '';
+  position: absolute;
+  left: 56px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #d9584a;
+}
+.seciciBas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--f-daktilo);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.kapat {
+  min-height: 32px;
+  padding: 0 10px;
+  border: 1.5px solid rgba(62, 58, 47, 0.4);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--f-daktilo);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: border-color 0.25s;
+}
+.kapat:hover {
+  border-color: var(--murekkep);
+}
+.seciciGirdi {
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+  padding: 0 4px;
+  border: 0;
+  border-bottom: 2px solid rgba(64, 104, 148, 0.45);
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--kagit-yazi);
+  caret-color: var(--mor);
+  font-family: var(--f-daktilo);
+  font-size: 18px;
+  font-weight: 700;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.seciciGirdi::placeholder {
+  color: #6b6553;
+  font-weight: 400;
+}
+.seciciGirdi:focus-visible {
+  border-bottom-color: var(--mor);
+  box-shadow: 0 2px 0 var(--mor);
+}
+.seciciNot {
+  margin: 10px 0 0;
+  font-family: var(--f-daktilo);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--kagit-soluk);
+}
+.seciciListe {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+.uyeSecenek {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 8px;
+  border: 0;
+  border-bottom: 1px solid rgba(64, 104, 148, 0.26);
+  background: transparent;
+  text-align: left;
+  font-family: var(--f-daktilo);
+  font-size: 15px;
+  transition: background-color 0.2s, translate 0.35s var(--yay);
+}
+.uyeSecenek[aria-disabled='true'] {
+  cursor: progress;
+  opacity: 0.6;
+}
+.uyeSecenek:hover:not([aria-disabled='true']),
+.uyeSecenek:focus-visible {
+  background: rgba(86, 54, 217, 0.08);
+  translate: 4px 0;
+}
+.uyeNo {
+  flex: none;
+  font-weight: 700;
+  color: var(--mor);
+}
+.uyeAd {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.uyePasif {
+  margin-left: auto;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--kirmizi);
+}
+
+/* ---------- hareketler ---------- */
+.hareketler {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.hareketKart {
+  align-self: stretch;
+  margin: 0;
+  padding: 6px 20px 8px;
+  list-style: none;
+  border-radius: 4px;
+  background-color: var(--paper);
+  color: var(--kagit-yazi);
+  box-shadow: var(--golge-kagit);
+  font-family: var(--f-daktilo);
+  font-size: 14px;
+  transition: background-color var(--tema-gecis);
+}
+.hareket {
+  display: grid;
+  grid-template-columns: 6ch 7ch minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 36px;
+  border-bottom: 1px solid rgba(64, 104, 148, 0.26);
+  animation: hareketGir 0.5s var(--giris) both;
+}
+.hareket:last-child {
+  border-bottom: 0;
+}
+@keyframes hareketGir {
+  from {
+    opacity: 0;
+    translate: -14px 0;
+  }
+}
+.hareketSoluk {
+  color: var(--kagit-soluk);
+}
+.hareketUye {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hareketTip {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--murekkep);
+}
+.hareketTip[data-gec='true'] {
+  color: var(--kirmizi);
+}
+
+@media (max-width: 640px) {
+  .buyuk {
+    padding: 36px 18px 46px;
+  }
+  .kayitAlt {
+    left: 18px;
+    right: 18px;
+  }
+  .secici {
+    padding-left: 20px;
+  }
+  .secici::before {
+    display: none;
+  }
+}

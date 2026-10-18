@@ -1,0 +1,178 @@
+/* Yeni üye: dolaptan çekilen cetvelli kayıt fişi. */
+
+.sarmal {
+  overflow: hidden;
+  margin: -12px -10px -40px;
+  padding: 12px 10px 40px;
+}
+
+.duzen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 400px);
+  align-items: start;
+  gap: 32px;
+}
+@media (max-width: 1100px) {
+  .duzen {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fis {
+  position: relative;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 42px clamp(18px, 3vw, 34px) 26px;
+  border-radius: 4px;
+  box-shadow: 0 26px 50px rgba(0, 0, 0, 0.55);
+  font-family: var(--f-daktilo);
+}
+.fis::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 70px;
+  height: 22px;
+  translate: -50% 0;
+  rotate: -2deg;
+  background: rgba(232, 214, 160, 0.75);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.ust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px 16px;
+}
+.ust h2 {
+  margin: 0;
+  font-family: var(--f-baslik);
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.ust p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--kagit-soluk);
+}
+
+.alanlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 20px 28px;
+}
+.alan {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.alan label,
+.tur legend {
+  padding: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--kagit-soluk);
+}
+.zorunlu {
+  color: #d9584a;
+}
+.alan input {
+  min-height: 40px;
+  padding: 6px 2px 4px;
+  border: 0;
+  border-bottom: 1.5px dashed rgba(64, 104, 148, 0.55);
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--kagit-yazi);
+  caret-color: var(--mor);
+  font-family: var(--f-daktilo);
+  font-size: 19px;
+  font-weight: 700;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+.alan input:focus-visible {
+  border-bottom-style: solid;
+  border-bottom-color: var(--mor);
+  background-color: rgba(86, 54, 217, 0.06);
+}
+.alan input[aria-invalid='true'] {
+  border-bottom-color: var(--kirmizi);
+}
+.alan input::placeholder {
+  color: #8c836a;
+  font-weight: 400;
+}
+.hata {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--kirmizi);
+}
+
+.tur {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.secici {
+  position: relative;
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1.5px solid var(--kagit-yazi);
+}
+.secenek {
+  position: relative;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 18px;
+  border-radius: 999px;
+  font-family: var(--f-govde);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.secenek[data-secili='true'] {
+  color: #fff;
+}
+.secenek:has(input:focus-visible) {
+  outline: 2px solid var(--odak);
+  outline-offset: 2px;
+}
+.secenek span {
+  position: relative;
+  z-index: 1;
+}
+/* '.secenek span' kuralı işarete de uymasın diye daha belirgin seçici */
+.secenek .isaret {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 999px;
+  background: var(--mor);
+}
+
+.alt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}

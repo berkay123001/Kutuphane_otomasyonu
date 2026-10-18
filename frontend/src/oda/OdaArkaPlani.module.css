@@ -1,0 +1,85 @@
+/* Tasarımdaki kütüphane odası — performans için önceden çizilmiş görsel (public/oda/*.jpg,
+   kaynağı OdaCizimi.tsx). Canlı kalan hafif parçalar: toz zerreleri ve "ışıklar yanıyor" açılışı. */
+
+.arka {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #2a190d;
+  pointer-events: none;
+}
+
+.resim {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: 72% 0;
+  background-repeat: no-repeat;
+}
+.gece {
+  opacity: 0;
+  transition: opacity 1.8s ease;
+}
+:global(html[data-tema='gece']) .gece {
+  opacity: 1;
+}
+
+/* ---------- toz (tasarım: .dust, mote) ---------- */
+.toz {
+  position: absolute;
+  inset: 0;
+  transition: opacity 1.8s;
+}
+:global(html[data-tema='gece']) .toz {
+  opacity: 0.35;
+}
+.toz i {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 240, 210, 0.9);
+  animation: zerre 16s ease-in-out infinite;
+}
+.toz i:nth-child(1) { top: 16%; right: 16%; }
+.toz i:nth-child(2) { top: 22%; right: 24%; animation-delay: -2s; animation-duration: 19s; }
+.toz i:nth-child(3) { top: 28%; right: 20%; animation-delay: -5s; }
+.toz i:nth-child(4) { top: 34%; right: 31%; animation-delay: -7s; animation-duration: 21s; }
+.toz i:nth-child(5) { top: 40%; right: 27%; animation-delay: -1s; }
+.toz i:nth-child(6) { top: 45%; right: 38%; animation-delay: -9s; animation-duration: 18s; }
+.toz i:nth-child(7) { top: 51%; right: 35%; animation-delay: -4s; }
+.toz i:nth-child(8) { top: 56%; right: 46%; animation-delay: -11s; animation-duration: 23s; }
+.toz i:nth-child(9) { top: 62%; right: 42%; animation-delay: -6s; }
+.toz i:nth-child(10) { top: 67%; right: 53%; animation-delay: -3s; animation-duration: 20s; }
+.toz i:nth-child(11) { top: 24%; right: 12%; animation-delay: -8s; }
+.toz i:nth-child(12) { top: 38%; right: 18%; animation-delay: -12s; animation-duration: 17s; }
+.toz i:nth-child(13) { top: 58%; right: 30%; animation-delay: -10s; }
+.toz i:nth-child(14) { top: 72%; right: 48%; animation-delay: -13s; animation-duration: 22s; }
+@keyframes zerre {
+  0%, 100% { translate: 0 0; opacity: 0; }
+  20% { opacity: 0.9; }
+  50% { translate: -40px 30px; opacity: 0.6; }
+  80% { opacity: 0.9; }
+}
+
+/* ---------- ışıklar yanıyor (tasarım: .lights, lightsOn) ---------- */
+.isiklar {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: #030302;
+  pointer-events: none;
+  animation: isiklarYanar 1.25s linear both;
+}
+@keyframes isiklarYanar {
+  0% { opacity: 1; }
+  7% { opacity: 0.4; }
+  11% { opacity: 0.96; }
+  19% { opacity: 0.22; }
+  23% { opacity: 0.9; }
+  34% { opacity: 0.08; }
+  38% { opacity: 0.55; }
+  52% { opacity: 0; }
+  100% { opacity: 0; visibility: hidden; }
+}

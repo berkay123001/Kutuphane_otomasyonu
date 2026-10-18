@@ -1,0 +1,166 @@
+/* ---------- odometre (Main.dc.html .odo / .strip) ---------- */
+.odometre {
+  display: inline-flex;
+}
+.haneler {
+  display: inline-flex;
+}
+.odo {
+  display: block;
+  height: 1em;
+  overflow: hidden;
+}
+.serit {
+  display: flex;
+  flex-direction: column;
+  animation: roll 2s cubic-bezier(0.12, 0.7, 0.18, 1) both;
+}
+.serit > span {
+  display: block;
+  height: 1em;
+  line-height: 1em;
+  text-align: center;
+}
+@keyframes roll {
+  from {
+    translate: 0 0;
+  }
+}
+
+/* ---------- bildirim fişleri ---------- */
+.bildirimler {
+  position: fixed;
+  right: clamp(12px, 3vw, 36px);
+  bottom: clamp(12px, 3vw, 36px);
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  pointer-events: none;
+}
+.bildirim {
+  position: relative;
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  max-width: min(420px, 86vw);
+  padding: 34px 40px 16px 20px;
+  border: 0;
+  border-radius: 3px;
+  text-align: left;
+  font-family: var(--f-daktilo);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+.bildirimMetin {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.bildirimMetin strong {
+  font-size: 15px;
+}
+
+/* ---------- yükleniyor / hata / boş ---------- */
+.yukleniyor {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 12px 0;
+}
+.yuklenenFisler {
+  display: flex;
+  gap: 16px;
+}
+.bosFis {
+  width: clamp(110px, 16vw, 180px);
+  height: 120px;
+  border-radius: 3px;
+  box-shadow: var(--golge-kagit);
+  animation: nefes 1.6s ease-in-out infinite alternate;
+}
+.bosFis:nth-child(2) {
+  rotate: 1.5deg;
+}
+.bosFis:nth-child(3) {
+  rotate: -1deg;
+}
+@keyframes nefes {
+  from {
+    opacity: 0.45;
+    translate: 0 6px;
+  }
+  to {
+    opacity: 0.9;
+    translate: 0 -4px;
+  }
+}
+
+.hataKutusu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 560px;
+  padding: 40px 26px 22px;
+  border-radius: 3px;
+  box-shadow: var(--golge-kagit);
+  font-family: var(--f-daktilo);
+  rotate: -0.6deg;
+  animation: global(yukselBelir) 0.6s var(--giris) both;
+}
+.hataMesaji {
+  margin: 0;
+  font-weight: 700;
+  font-size: 17px;
+}
+.gerekceler {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--kirmizi);
+}
+
+.bos {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 38px 24px 22px;
+  border-radius: 3px;
+  font-family: var(--f-daktilo);
+  box-shadow: var(--golge-kagit);
+  animation: global(yukselBelir) 0.6s var(--giris) both;
+}
+
+.hataSiniri {
+  position: relative;
+  z-index: 5;
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  padding: 40px clamp(16px, 4vw, 52px);
+}
+
+.bildirimKapat {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--kagit-soluk);
+  font-size: 22px;
+  line-height: 1;
+}
+.bildirimKapat:hover {
+  color: var(--kagit-yazi);
+  background: rgba(0, 0, 0, 0.06);
+}
